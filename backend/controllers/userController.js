@@ -1,39 +1,54 @@
-import User from "../models/userModel";
+import User from "../models/userModel.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function getUsers(req, res) {
   try {
-    const userList = User.find({});
+    const userList = await User.find({});
+    console.log(userList[0]);
     res.status(200).json({ message: "Success", data: { userList } });
   } catch (error) {
-    res.status(404).json("User Not Found");
+    res.status(404).json({ error: "User Not Found" });
+  }
+}
+
+//SignUp
+export async function signUp(req, res) {
+  let salt = await bcrypt.genSalt(10);
+  let hashedPassword = await bcrypt.hash(req.body.password, salt);
+  req.body.password = hashedPassword;
+  try {
+    const newUser = User.create(req.body);
+    let payload = { email: newUser.email, id: newUser._id };
+    const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "3d" });
+    res.send({ email: newUser.email, id: newUser._id, token });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json("Cannot add user");
   }
 }
 
 //Login
 export async function login(req, res) {
+  let { email, password } = req.body;
+  console.log(email);
   try {
-    const userDoc = User.find({ email: req.body.email });
+    const userDoc = await User.findOne({ email: email });
+    console.log(userDoc.email, "====userdoc");
     if (!userDoc) {
-      res.send("User or password do not match");
+      res.status.send({ error: "User or password do not match" });
     }
-    
+    let isPasswordValid = await bcrypt.compare(password, userDoc.password);
+    if (!isPasswordValid) {
+      res.status(400).json({ error: "Wrong Password" });
+    }
+    console.log("User doc ", userDoc);
+    console.log("Upassword ", password);
+    console.log("User doc.password ", userDoc.password);
+    let payload = { email: userDoc.email, id: userDoc._id };
+    const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "1d" });
+    res.json({ email: userDoc.email, id: userDoc._id, token });
   } catch (error) {
-    res.status(400).send("Email or password do not match");
-  }
-}
-
-export async function addUser(req, res) {
-  const { name, email, password } = req.body;
-  try {
-    const newUser = new User({
-      name: name,
-      email: email,
-      password: password,
-    });
-    await newUser.save();
-    res.send("User Registered successfully");
-  } catch (error) {
-    console.log(error);
-    res.status(400).json("Cannot add user");
+    res.status(400).send({ error: "Email or password do not match" });
   }
 }
