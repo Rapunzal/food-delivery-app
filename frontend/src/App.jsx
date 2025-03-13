@@ -4,13 +4,24 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Login from "./components/Login";
+import Menu from "./pages/Menu";
+import ContactUs from "./pages/ContactUs";
+import userStore from "./stores/UserStore";
+import axios from "axios";
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div>
-      <Navbar />
+      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
+      <Navbar setShowLogin={setShowLogin} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
         <Route path="*" element={<Navigate to="/" />} />

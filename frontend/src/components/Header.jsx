@@ -1,4 +1,5 @@
 import React from "react";
+import Menu from "../pages/Menu";
 
 const Header = () => {
   return (
