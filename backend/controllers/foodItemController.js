@@ -1,4 +1,5 @@
 import FoodItem from "../models/foodItemModel.js";
+import fs from "fs";
 
 export async function getFoodItems(req, res) {
   try {
@@ -11,18 +12,33 @@ export async function getFoodItems(req, res) {
 }
 
 export const addFoodItem = async (req, res) => {
+  let imgFileName = `${req.file.filename}`;
+  console.log(imgFileName, " image name");
+  console.log(req.body.description);
   try {
     const newFoodItem = new FoodItem({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      image: req.body.image,
+      image: imgFileName,
     });
+    console.log(newFoodItem);
     await newFoodItem.save();
     console.log(newFoodItem);
     res.status(201).send("food item added successfully");
   } catch (error) {
     res.status(400).json({ error: "Food item cannot be added" });
+  }
+};
+
+export const deleteFoodItem = async (req, res) => {
+  try {
+    const response = await FoodItem.findByIdAndDelete(req.params.id);
+    console.log("Deleted successfully");
+    res.json("deleted successfully");
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: " Item could not be deleted" });
   }
 };

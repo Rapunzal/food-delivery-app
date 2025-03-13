@@ -13,6 +13,7 @@ app.use(cors());
 app.use(router);
 app.use("/users", router);
 app.use("/foods", food);
+app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.status(200).json("hello");
