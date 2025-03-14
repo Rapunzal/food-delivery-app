@@ -27,9 +27,3 @@ const foodItemsStore = create((set) => ({
 }));
 
 export default foodItemsStore;
-
-// const getFoodItemsList = async () => {
-//   const response = await axios.get("http://localhost:8080/foods/");
-//   console.log(response.data.data);
-//   setFoodItems(response.data.data);
-// };

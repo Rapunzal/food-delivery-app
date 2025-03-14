@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
@@ -14,21 +14,38 @@ import ProctectedRoutes from "./pages/ProctectedRoutes";
 import UpdateFood from "./pages/UpdateFood";
 import DeleteFoodItem from "./pages/DeleteFoodItem";
 import FoodList from "./pages/FoodList";
+import AdminHomePage from "./pages/AdminHomePage";
+import AdminLayout from "./pages/AdminLayout";
+import Sidebar from "./pages/Sidebar";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  let location = useLocation();
+  // Array of paths where the navbar should be hidden
+  const excludedPaths = [
+    "/admin",
+    "/admin/foodList",
+    "/admin/addFood",
+    "/admin/updateFood",
+    "/admin/deleteFood",
+  ];
+
+  // Check if the current path is in the excluded paths
+  const shouldShowNavbar = excludedPaths.includes(location.pathname);
 
   return (
     <div>
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <Navbar setShowLogin={setShowLogin} />
+      {shouldShowNavbar && <Sidebar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<ProctectedRoutes />}>
-          <Route path="/foodList" element={<FoodList />} />
-          <Route path="/addFood" element={<AddFood />} />
-          <Route path="/updateFood" element={<UpdateFood />} />
-          <Route path="deleteFood" element={<DeleteFoodItem />} />
+          <Route path="/admin" element={<AdminLayout />} />
+          <Route path="/admin/foodList" element={<FoodList />} />
+          <Route path="/admin/addFood" element={<AddFood />} />
+          <Route path="/admin/updateFood" element={<UpdateFood />} />
+          <Route path="/admin/deleteFood" element={<DeleteFoodItem />} />
         </Route>
         <Route path="/menu" element={<Menu />} />
         <Route path="/contact-us" element={<ContactUs />} />
