@@ -3,9 +3,9 @@ import fs from "fs";
 
 export async function getFoodItems(req, res) {
   try {
-    const foodItemList = await FoodItem.find({});
-    console.log(foodItemList);
-    res.status(200).json({ message: "Success", data: { foodItemList } });
+    const foodItems = await FoodItem.find({});
+    console.log(foodItems);
+    res.status(200).json({ message: "Success", data: { foodItems } });
   } catch (error) {
     res.status(400).json({ error: "Food item Not Found" });
   }
@@ -34,6 +34,8 @@ export const addFoodItem = async (req, res) => {
 
 export const deleteFoodItem = async (req, res) => {
   try {
+    const item = await FoodItem.findById(req.params.id);
+    fs.unlink(`uploads/${item.image}`, () => {});
     const response = await FoodItem.findByIdAndDelete(req.params.id);
     console.log("Deleted successfully");
     res.json("deleted successfully");

@@ -19,9 +19,14 @@ export async function signUp(req, res) {
   req.body.password = hashedPassword;
   try {
     const newUser = User.create(req.body);
-    let payload = { email: newUser.email, id: newUser._id };
+    let payload = { email: newUser.email, id: newUser._id, role: newUser.role };
     const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "3d" });
-    res.send({ email: newUser.email, id: newUser._id, token });
+    res.send({
+      email: newUser.email,
+      id: newUser._id,
+      role: newUser.role,
+      token,
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json("Cannot add user");
@@ -45,9 +50,14 @@ export async function login(req, res) {
     console.log("User doc ", userDoc);
     console.log("Upassword ", password);
     console.log("User doc.password ", userDoc.password);
-    let payload = { email: userDoc.email, id: userDoc._id };
+    let payload = { email: userDoc.email, id: userDoc._id, role: userDoc.role };
     const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "1d" });
-    res.json({ email: userDoc.email, id: userDoc._id, token });
+    res.json({
+      email: userDoc.email,
+      id: userDoc._id,
+      role: userDoc.role,
+      token,
+    });
   } catch (error) {
     res.status(400).send({ error: "Email or password do not match" });
   }
