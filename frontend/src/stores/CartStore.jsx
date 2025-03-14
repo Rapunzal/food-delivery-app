@@ -28,9 +28,24 @@ const useCartStore = create((set, get) => ({
       //  set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     }
   },
-  deleteItemFromCart:(item)=>{
-    
-  }
+  deleteItemFromCart: (item) => {
+    const itemToBeRemoved = get().cartItems.find(
+      (cart) => cart._id === item._id
+    );
+
+    if (itemToBeRemoved.quantity) {
+      set({
+        cartItems: get().cartItems.filter(
+          (cartItem) => cartItem._id !== item._id
+        ),
+      });
+    }
+  },
+  cartTotal: () => {
+    return get()
+      .cartItems.reduce((total, item) => total + item.quantity * item.price, 0)
+      .toFixed(2);
+  },
 }));
 
 export default useCartStore;

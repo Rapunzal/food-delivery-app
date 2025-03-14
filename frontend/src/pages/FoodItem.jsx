@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useCartStore from "../stores/CartStore";
 
-const FoodItem = ({ food }) => {
+const FoodItem = ({ food, index }) => {
   const { addItemToCart, removeItemFromCart, cartItems } = useCartStore();
   const cartItem = useCartStore((state) => state.cartItems);
-  console.log(cartItems.name, " in food item component");
-  const [quantity, setQuantity] = useState(cartItems.quantity);
+  console.log(cartItems[0], " in food item component");
+
+  const [quantity, setQuantity] = useState(0);
 
   function handleDecrement() {
     if (quantity < 1) {
@@ -13,11 +14,11 @@ const FoodItem = ({ food }) => {
     }
     setQuantity((prev) => prev - 1);
   }
-  function handleIncrement() {
+  function handleIncrement(food) {
     setQuantity((prev) => prev + 1);
   }
   return (
-    <div className=" w-[283px] h-80 border rounded-md " key={food._id}>
+    <div className=" w-[283px] h-80 border rounded-md relative" key={food._id}>
       <div>
         <img
           src={`http://localhost:8080/images/${food.image}`}
@@ -30,25 +31,12 @@ const FoodItem = ({ food }) => {
         {/* <p>{food.category}</p> */}
         <p>Price: ${food.price}</p>
         <div className="flex justify-end mr-4">
-          <div className="rounded-full border border-gray-200  w-24  h-10 relative ">
-            {/* absolute  bottom-2 right-0 */}
-            <button
-              className="absolute bottom-1 left-4 text-2xl "
-              onClick={() => removeItemFromCart(food)}
-            >
-              -{/* //absolute bottom-2 right-14 - px-2 py-1 */}
-            </button>
-            <p className=" absolute bottom-2 left-8 rounded-full bg-red-500 w-6 h-6 text-center text-white  ">
-              {/* absolute bottom-2 right-10 px-2 py-1*/}
-              {cartItem.quantity}
-            </p>
-            <button
-              className="absolute bottom-1 right-4 text-2xl"
-              onClick={() => addItemToCart(food)}
-            >
-              {/* absolute bottom-2 right-4 px-2 py-1 */}+
-            </button>
-          </div>
+          <button
+            className="absolute bottom-3 rounded-full border right-4 text-l px-2 py-1 text-white bg-orange-500 hover:bg-orange-600"
+            onClick={() => addItemToCart(food)}
+          >
+            Add Item
+          </button>
         </div>
       </div>
     </div>

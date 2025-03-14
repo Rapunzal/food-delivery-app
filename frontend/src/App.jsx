@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import Menu from "./pages/Menu";
 import ContactUs from "./pages/ContactUs";
-import userStore from "./stores/UserStore";
-import axios from "axios";
+import AddFood from "./pages/AddFood";
+import Footer from "./components/Footer";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -24,8 +24,10 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/addFood" element={<AddFood />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

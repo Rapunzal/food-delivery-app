@@ -3,7 +3,6 @@ import foodItemsStore from "../stores/FoodItemStores";
 import FoodItem from "./FoodItem";
 
 const Menu = () => {
-  
   const { foodItems, fetchData, isLoading } = foodItemsStore();
   const getData = foodItemsStore((state) => state.fetchData);
   const list = foodItemsStore((state) => state.foodItems);
@@ -19,8 +18,8 @@ const Menu = () => {
     <div className="flex justify-center align-middle flex-wrap gap-12  py-8 ml-60 mr-60 ">
       {isLoading && <h1>Loading...</h1>}
 
-      {foodItems.map((food) => (
-        <FoodItem food={food} />
+      {foodItems.map((food, index) => (
+        <FoodItem food={food} index={index} key={food._id} />
       ))}
     </div>
   );
