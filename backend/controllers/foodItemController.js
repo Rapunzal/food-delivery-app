@@ -15,16 +15,17 @@ export const addFoodItem = async (req, res) => {
   console.log(req.file);
   let imgFileName = `${req.file.filename}`;
   console.log(imgFileName, " image name");
-  console.log(req.body.description);
+  console.log(req.body, " request body");
+  console.log(req.body.name, " request body name");
   try {
     const newFoodItem = new FoodItem({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      image: req.body.image,
+      image: imgFileName,
     });
-    console.log(newFoodItem);
+    console.log(newFoodItem, " new food item---");
     await newFoodItem.save();
     console.log(newFoodItem);
     res.status(201).send("food item added successfully");

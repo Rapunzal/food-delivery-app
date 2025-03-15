@@ -14,22 +14,20 @@ const AddFood = () => {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
+
     console.log(selectedFile);
-    formData.append("file", selectedFile);
-    formData.append("name", food.name);
-    formData.append("category", food.category);
-    formData.append("description", food.description);
-    formData.append("price", food.price);
+    formData.append("image", selectedFile);
+
     console.log(formData);
     try {
       const response = await axios.post(
         "http://localhost:8080/foods/add",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // or , 'application/x-www-form-urlencoded', etc.
-          },
-        }
+        formData
+        // {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data", // or , 'application/x-www-form-urlencoded', etc.
+        //   },
+        // }
       );
       console.log(response, " response");
       console.log(formData);
