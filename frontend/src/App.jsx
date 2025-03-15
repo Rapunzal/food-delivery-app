@@ -37,23 +37,26 @@ function App() {
     <div>
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <Navbar setShowLogin={setShowLogin} />
-      {shouldShowNavbar && <Sidebar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route element={<ProctectedRoutes />}>
-          <Route path="/admin" element={<AdminLayout />} />
-          <Route path="/admin/foodList" element={<FoodList />} />
-          <Route path="/admin/addFood" element={<AddFood />} />
-          <Route path="/admin/updateFood" element={<UpdateFood />} />
-          <Route path="/admin/deleteFood" element={<DeleteFoodItem />} />
-        </Route>
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={<Order />} />
+      <div className="flex">
+        {shouldShowNavbar && <Sidebar />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route element={<ProctectedRoutes />}>
+            <Route path="/admin" element={<AdminLayout />} />
+            <Route path="/admin/foodList" element={<FoodList />} />
+            <Route path="/admin/addFood" element={<AddFood />} />
+            <Route path="/admin/updateFood" element={<UpdateFood />} />
+            <Route path="/admin/deleteFood" element={<DeleteFoodItem />} />
+          </Route>
 
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
+
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

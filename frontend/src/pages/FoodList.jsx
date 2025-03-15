@@ -14,7 +14,7 @@ const FoodList = () => {
   }
   console.log(foodItems, " list foodList component");
   return (
-    <div className="h-screen">
+    <div className="ml-[100px]">
       <h2 className="text-center underline">List Of Food Items</h2>
       <div className="flex justify-center py-8 ml-32 mr-32">
         <div>

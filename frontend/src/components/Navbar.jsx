@@ -14,7 +14,7 @@ const Navbar = ({ setShowLogin }) => {
     fetchData();
   }
   return (
-    <div className="flex justify-between align-middle">
+    <div className="flex justify-between align-middle border">
       <Link to="/">
         <img
           className="ml-10"

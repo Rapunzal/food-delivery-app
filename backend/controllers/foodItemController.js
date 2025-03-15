@@ -12,6 +12,7 @@ export async function getFoodItems(req, res) {
 }
 
 export const addFoodItem = async (req, res) => {
+  console.log(req.file);
   let imgFileName = `${req.file.filename}`;
   console.log(imgFileName, " image name");
   console.log(req.body.description);
@@ -21,7 +22,7 @@ export const addFoodItem = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      image: imgFileName,
+      image: req.body.image,
     });
     console.log(newFoodItem);
     await newFoodItem.save();

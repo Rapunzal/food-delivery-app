@@ -12,11 +12,12 @@ const Cart = () => {
   } = useCartStore();
   const navigate = useNavigate();
   return (
-    <div className=" h-screen">
-      <h2 className="text-center font-bold">Cart Total</h2>
-
+    <div className=" h-screen flex justify-center ml-96">
       <div className="flex justify-center py-8">
         <div>
+          <div>
+            <h2 className="text-center font-bold">Cart Total</h2>
+          </div>
           <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] gap-4 align-middle text-gray-500">
             <p>Items</p>
             <p>Title</p>
