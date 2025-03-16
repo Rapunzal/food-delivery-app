@@ -13,16 +13,34 @@ export async function getFoodItems(req, res) {
 }
 
 //to get food category
-export async function getFoodCategories() {
+export async function getFoodCategories(req, res) {
   try {
-    const foodCategoryList = await FoodItem.find({ category });
-    console.log(response);
-    res.status(200).json({ message: "Success", data: { foodCategoryList } });
+    const foodCategoryList = await FoodItem.find();
+    const list = foodCategoryList.map((food) => food.category);
+    console.log(list);
+    const uniqueArray = list.filter(
+      (value, index, self) => self.indexOf(value) === index
+    );
+    res.status(200).json({ message: "Success", data: { uniqueArray } });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "Food category Not Found" });
   }
 }
+
+//get food by category
+//http://localhost:8080/foods/category?category=pasta
+export const getFoodByCategory = async (req, res) => {
+  console.log(req.query.category, " query");
+  try {
+    const response = await FoodItem.find({ category: req.query.category });
+    console.log(response);
+    res.status(200).json({ message: "Success", data: { response } });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Food category Not Found" });
+  }
+};
 
 //Posting food item
 export const addFoodItem = async (req, res) => {

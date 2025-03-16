@@ -6,6 +6,7 @@ import {
   deleteFoodItem,
   updateFoodItem,
   getFoodCategories,
+  getFoodByCategory,
 } from "../controllers/foodItemController.js";
 
 const router = express.Router();
@@ -14,7 +15,10 @@ const router = express.Router();
 router.get("/", getFoodItems);
 
 //Get list of all food categories list
-router.get("/", getFoodCategories);
+router.get("/categories", getFoodCategories);
+
+//Get list of all food items in a particular category
+router.get("/category", getFoodByCategory);
 
 const storage = multer.diskStorage({
   destination: "uploads",
