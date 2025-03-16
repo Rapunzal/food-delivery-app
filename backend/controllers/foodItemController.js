@@ -12,6 +12,18 @@ export async function getFoodItems(req, res) {
   }
 }
 
+//to get food category
+export async function getFoodCategories() {
+  try {
+    const foodCategoryList = await FoodItem.find({ category });
+    console.log(response);
+    res.status(200).json({ message: "Success", data: { foodCategoryList } });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Food category Not Found" });
+  }
+}
+
 //Posting food item
 export const addFoodItem = async (req, res) => {
   console.log(req.file);
