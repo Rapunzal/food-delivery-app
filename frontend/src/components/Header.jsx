@@ -6,9 +6,9 @@ const Header = () => {
     <div>
       <div className="">
         <img
-          src="./src/assets/food.png"
+          src="https://png.pngtree.com/background/20210710/original/pngtree-fast-food-light-yellow-hamburger-coke-chips-hot-coffee-tomato-sauce-picture-image_981064.jpg"
           alt="burger"
-          className="h-[624px] w-full"
+          className="h-[624px] w-full object-cover"
         />
       </div>
     </div>
