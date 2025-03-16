@@ -96,7 +96,7 @@ const AddFood = () => {
               type="file"
               name="image"
               onClick={handleFileChange}
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg,image/webp,image/jpg"
               className="border rounded"
             />
           </div>

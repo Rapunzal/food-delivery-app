@@ -36,7 +36,7 @@ function App() {
     <div>
       {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <Navbar setShowLogin={setShowLogin} />
-      <div className="flex">
+      <div className="flex ">
         {shouldShowNavbar && <Sidebar />}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -44,7 +44,7 @@ function App() {
             <Route path="/admin" element={<AdminLayout />} />
             <Route path="/admin/foodList" element={<FoodList />} />
             <Route path="/admin/addFood" element={<AddFood />} />
-            <Route path="/admin/updateFood/:id" element={<UpdateFood />} />
+            <Route path="/admin/updateFood" element={<UpdateFood />} />
           </Route>
 
           <Route path="/menu" element={<Menu />} />

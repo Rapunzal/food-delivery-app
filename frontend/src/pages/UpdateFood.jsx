@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import foodItemsStore from "../stores/FoodItemStores";
+import { useLocation } from "react-router-dom";
 
 const UpdateFood = () => {
+  const location = useLocation();
+  // get userId
+  let itemId = location.state.itemId;
+  const foodList = foodItemsStore((state) => state.foodItems);
+  const food = foodList.find((food) => food._id === itemId);
+  const [item, setItem] = useState(food);
   const handleSubmit = () => {};
   const handleChange = () => {};
   const handleFileChange = () => {};
@@ -19,6 +27,7 @@ const UpdateFood = () => {
             <input
               type="text"
               name="name"
+              value={item.name}
               placeholder="Enter Food Name"
               className="border rounded p-1"
               onChange={handleChange}

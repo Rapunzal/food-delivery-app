@@ -44,10 +44,11 @@ const Navbar = ({ setShowLogin }) => {
           Menu
         </NavLink>
         <NavLink
+          to="/order"
           className="active:underline"
           onClick={() => setMenu("Mobile-app")}
         >
-          Mobile-app
+          Orders
         </NavLink>
         <NavLink
           to="/contact-us"

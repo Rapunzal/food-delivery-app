@@ -26,7 +26,7 @@ const FoodList = () => {
     }
   };
   return (
-    <div className="ml-[100px]">
+    <div className="ml-[100px] ">
       <h2 className="text-center underline">List Of Food Items</h2>
       <div className="flex justify-center py-8 ml-32 mr-32">
         <div>
@@ -57,14 +57,15 @@ const FoodList = () => {
                   <p>${item.price}</p>
                   <p>{item.category}</p>
                   <p>
-                    <Link to="/admin/updateFood/item._id">hi</Link>
                     <button
                       onClick={() =>
-                        navigate("/admin/updateFood/item._id", {
-                          replace: true,
+                        navigate("/admin/updateFood", {
+                          state: {
+                            itemId: item._id,
+                          },
                         })
                       }
-                      className="border rounded px-2 py-1 bg-orange-400 text-white hover:bg-orange-500"
+                      className="border rounded px-1 py-0 bg-orange-400 text-white hover:bg-orange-500"
                     >
                       Update
                     </button>

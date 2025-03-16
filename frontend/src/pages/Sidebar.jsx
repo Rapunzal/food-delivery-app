@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div
       className="w-44
-     h-96 border border-t-0"
+      border border-t-0"
     >
       <Link to="/admin/foodList" className="underline">
         Food List
