@@ -19,10 +19,6 @@ const Sidebar = () => {
         Update Food item
       </Link>
       <br />
-      <Link to="/admin/deleteFood" className="underline">
-        Delete Food item
-      </Link>
-      <br />
     </div>
   );
 };

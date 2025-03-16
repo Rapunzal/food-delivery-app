@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "./components/Login";
 import Menu from "./pages/Menu";
 import ContactUs from "./pages/ContactUs";
@@ -12,7 +12,6 @@ import AddFood from "./pages/AddFood";
 import Footer from "./components/Footer";
 import ProctectedRoutes from "./pages/ProctectedRoutes";
 import UpdateFood from "./pages/UpdateFood";
-import DeleteFoodItem from "./pages/DeleteFoodItem";
 import FoodList from "./pages/FoodList";
 import AdminHomePage from "./pages/AdminHomePage";
 import AdminLayout from "./pages/AdminLayout";
@@ -45,8 +44,7 @@ function App() {
             <Route path="/admin" element={<AdminLayout />} />
             <Route path="/admin/foodList" element={<FoodList />} />
             <Route path="/admin/addFood" element={<AddFood />} />
-            <Route path="/admin/updateFood" element={<UpdateFood />} />
-            <Route path="/admin/deleteFood" element={<DeleteFoodItem />} />
+            <Route path="/admin/updateFood/:id" element={<UpdateFood />} />
           </Route>
 
           <Route path="/menu" element={<Menu />} />

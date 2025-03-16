@@ -23,15 +23,9 @@ const AddFood = () => {
       const response = await axios.post(
         "http://localhost:8080/foods/add",
         formData
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data", // or , 'application/x-www-form-urlencoded', etc.
-        //   },
-        // }
       );
       console.log(response, " response");
       console.log(formData);
-      //console.log(food.image);
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +83,7 @@ const AddFood = () => {
           <div className="m-4">
             <label>Food Price : </label>
             <input
-              type="text"
+              type="number"
               name="price"
               onChange={handleChange}
               placeholder="Enter Price"
