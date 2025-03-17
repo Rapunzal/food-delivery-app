@@ -26,6 +26,7 @@ const AddFood = () => {
       );
       console.log(response, " response");
       console.log(formData);
+      form.reset(); // Reset the form after submission
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +54,6 @@ const AddFood = () => {
             <label>Food Name : </label>
             <input
               type="text"
-              value={food.name}
               name="name"
               placeholder="Enter Food Name"
               className="border rounded p-1"
