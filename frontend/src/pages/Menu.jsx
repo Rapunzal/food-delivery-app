@@ -4,30 +4,50 @@ import FoodItem from "./FoodItem";
 import { Category } from "./Category";
 
 const Menu = () => {
-  const [category, setCategory] = useState("");
-  const { foodItems, fetchData, isLoading } = foodItemsStore();
-  const getData = foodItemsStore((state) => state.fetchData);
-  const list = foodItemsStore((state) => state.foodItems);
-  console.log(foodItems, " in menu--");
-  useEffect(() => {
-    getData();
-  }, [getData]);
-  if (!list.length) {
-    return "Loading";
-  }
+  const [category, setCategory] = useState("Appetizers/Starters");
+  let {
+    foodItems,
+    isLoading,
+    foodItemsByCategory,
+    fetchDataByCategory,
+    categoryStore,
+    setCategoryStore,
+  } = foodItemsStore();
+  const getDataByCategory = foodItemsStore(
+    (state) => state.fetchDataByCategory
+  );
+  const list = foodItemsStore((state) => state.foodItemsByCategory);
 
+  useEffect(() => {
+    //getData();
+    getDataByCategory(categoryStore);
+    console.log(foodItemsByCategory, "items by category");
+  }, [getDataByCategory, category, categoryStore]);
+  // if (!list.length) {
+  //   return "Loading";
+  // }
+
+  const handleClick = (cat) => {
+    setCategory(cat);
+    setCategoryStore(category);
+    console.log(categoryStore, " category store");
+  };
+  //data by category
+  // useEffect(() => {}, [getDataByCategory, category]);
   return (
     <div className="flex flex-col">
       <div className="flex justify-center gap-12 m-8">
         {Category.map((cat) => (
-          <button onClick={() => setCategory(cat)}>{cat}</button>
+          <button onClick={() => handleClick(cat)} key={cat}>
+            {cat}
+          </button>
         ))}
       </div>
-      {category}
+
       <div className="flex justify-center align-middle flex-wrap gap-12  py-8 ml-60 mr-60 ">
         {isLoading && <h1>Loading...</h1>}
 
-        {foodItems.map((food, index) => (
+        {foodItemsByCategory.map((food, index) => (
           <FoodItem food={food} index={index} key={food._id} />
         ))}
       </div>

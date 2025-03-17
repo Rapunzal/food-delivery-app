@@ -7,12 +7,14 @@ import axios from "axios";
 const FoodList = () => {
   const { foodItems, isLoading } = foodItemsStore();
   const getData = foodItemsStore((state) => state.fetchData);
+
   const foodList = foodItemsStore((state) => state.foodItems);
   const navigate = useNavigate();
-  console.log(foodItems, " in menu--");
+  //   console.log(foodItems, " in menu--");
   useEffect(() => {
     getData();
   }, [getData]);
+
   if (!foodList.length) {
     return "Loading Food Items";
   }
