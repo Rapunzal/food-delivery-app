@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   address: {
-    type: String,
+    type: Object,
     required: true,
   },
   userId: {
@@ -31,6 +31,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const orderModel = mongoose.model("order", orderSchema);
+const OrderModel = mongoose.model("order", orderSchema);
 
-export default orderModel;
+export default OrderModel;

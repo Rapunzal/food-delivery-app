@@ -26,6 +26,7 @@ const AddFood = () => {
       );
       console.log(response, " response");
       console.log(formData);
+
       form.reset(); // Reset the form after submission
     } catch (error) {
       console.log(error);
