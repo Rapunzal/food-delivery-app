@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
     default: Date.now(),
   },
   payment: {
-    type: boolean,
+    type: Boolean,
     default: false,
   },
 });
