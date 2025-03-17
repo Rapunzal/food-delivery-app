@@ -2,43 +2,53 @@ import React, { useEffect, useState } from "react";
 import foodItemsStore from "../stores/FoodItemStores";
 import FoodItem from "./FoodItem";
 import { Category } from "./Category";
+import axios from "axios";
 
 const Menu = () => {
   const [category, setCategory] = useState("Appetizers/Starters");
-  let {
-    foodItems,
-    isLoading,
-    foodItemsByCategory,
-    fetchDataByCategory,
-    categoryStore,
-    setCategoryStore,
-  } = foodItemsStore();
-  const getDataByCategory = foodItemsStore(
-    (state) => state.fetchDataByCategory
-  );
-  const list = foodItemsStore((state) => state.foodItemsByCategory);
+  const [foodItemsByCategory, setFoodItemsByCategory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isActive, setIsActive] = useState(null);
+
+  async function getDataByCategory(category) {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/foods/category?category=${category}`
+      );
+      // const food = result;
+      console.log(response, " in category");
+      setFoodItemsByCategory(response.data.data.response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
     //getData();
-    getDataByCategory(categoryStore);
+    getDataByCategory(category);
     console.log(foodItemsByCategory, "items by category");
-  }, [getDataByCategory, category, categoryStore]);
-  // if (!list.length) {
-  //   return "Loading";
-  // }
+  }, [category]);
 
-  const handleClick = (cat) => {
+  const handleClick = (cat, index) => {
     setCategory(cat);
-    setCategoryStore(category);
-    console.log(categoryStore, " category store");
+    setIsActive(index);
   };
   //data by category
   // useEffect(() => {}, [getDataByCategory, category]);
   return (
     <div className="flex flex-col">
       <div className="flex justify-center gap-12 m-8">
-        {Category.map((cat) => (
-          <button onClick={() => handleClick(cat)} key={cat}>
+        {Category.map((cat, index) => (
+          <button
+            onClick={() => handleClick(cat, index)}
+            key={index}
+            className="active:underline"
+            // className={`
+            //   ${isActive ? "bg-green-500" : ""}`}
+          >
             {cat}
           </button>
         ))}
