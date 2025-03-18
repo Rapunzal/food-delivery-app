@@ -68,7 +68,8 @@ const Cart = () => {
           <div className="flex justify-end">Sub Total : ${cartTotal()}</div>
           <div className="flex justify-end">
             <button
-              className="bg-orange-500 px-2 py-1 text-white rounded-full hover:bg-orange-600"
+              disabled={Number(cartTotal()) <= 0}
+              className="bg-orange-500 disabled:bg-orange-300 px-2 py-1 text-white rounded-full hover:bg-orange-600"
               onClick={() => navigate("/order")}
             >
               Proceed To Checkout
