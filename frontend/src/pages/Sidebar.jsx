@@ -4,10 +4,10 @@ import { NavLink, Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div
-      className="w-44
+      className="w-52
       border border-t-0"
     >
-      <Link to="/admin/foodList" className="underline">
+      <Link to="/admin/foodList" className="underline font-semibold">
         Food List
       </Link>
       <br />

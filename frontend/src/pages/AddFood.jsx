@@ -42,54 +42,69 @@ const AddFood = () => {
     setSelectedFile(e.target.files[0]);
   };
   return (
-    <div className="flex justify-center w-full pt-20">
+    <div className="flex justify-center flex-col w-full pt-10">
+      <h2 className="text-center  font-bold ">Add Food Item</h2>
       <div className="h-lvh flex justify-center ">
-        {/* <h2 className="text-center  font-bold ">Add Food Item</h2> */}
-
         <form
           onSubmit={handleSubmit}
           className=""
           encType="multipart/form-data"
         >
-          <div className="m-4">
-            <label>Food Name : </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter Food Name"
-              className="border rounded p-1"
-              onChange={handleChange}
-            />
+          <div className="m-4 flex">
+            <div className="w-[150px]">
+              <label className="w-52">Food Name : </label>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter Food Name"
+                className="border rounded p-1"
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className="m-4">
-            <label>Food Category : </label>
-            <input
-              type="text"
-              name="category"
-              onChange={handleChange}
-              placeholder="Enter Food Category"
-              className="border rounded p-1"
-            />
+          <div className="m-4 flex">
+            <div className="w-[150px]">
+              <label>Food Category : </label>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="category"
+                onChange={handleChange}
+                placeholder="Enter Food Category"
+                className="border rounded p-1"
+              />
+            </div>
           </div>
-          <div className="m-4">
-            <label>Food Description : </label>
-            <input
-              type="text"
-              name="description"
-              onChange={handleChange}
-              placeholder="Enter Food Description"
-              className="border rounded p-1"
-            />
+          <div className="m-4 flex">
+            <div className="w-[150px]">
+              <label>Food Description : </label>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="description"
+                onChange={handleChange}
+                placeholder="Enter Food Description"
+                className="border rounded p-1"
+              />
+            </div>
           </div>
-          <div className="m-4">
-            <label>Food Price : </label>
-            <input
-              type="number"
-              name="price"
-              onChange={handleChange}
-              placeholder="Enter Price"
-              className="border rounded"
-            />
+          <div className="m-4 flex">
+            <div className="w-[150px]">
+              <label>Food Price : </label>
+            </div>
+            <div>
+              <input
+                type="number"
+                name="price"
+                onChange={handleChange}
+                placeholder="Enter Price"
+                className="border rounded"
+              />
+            </div>
           </div>
           <div className="m-4">
             <label>Upload Food Image : </label>
@@ -101,10 +116,13 @@ const AddFood = () => {
               className="border rounded"
             />
           </div>
-          <div className="m-4">
-            <button className="border rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-500  ">
-              Add Food Item
-            </button>
+          <div className="m-4 flex">
+            <div></div>
+            <div>
+              <button className="border rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-500  ">
+                Add Food Item
+              </button>
+            </div>
           </div>
         </form>
       </div>

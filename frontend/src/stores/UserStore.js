@@ -9,7 +9,9 @@ const userStore = create(
       accessToken: null,
       refreshToken: null,
       isLoggedIn: false,
+      role: "user",
       setUser: (user) => set({ user }),
+      setRole: (role) => set({ role }),
       setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
       setTokens: (accessToken, refreshToken) =>
         set({ accessToken, refreshToken }),

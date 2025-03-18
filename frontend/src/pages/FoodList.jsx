@@ -28,8 +28,8 @@ const FoodList = () => {
     }
   };
   return (
-    <div className="ml-[100px] ">
-      <h2 className="text-center underline">List Of Food Items</h2>
+    <div className="ml-[100px] w-full ">
+      <h2 className="text-center underline">Inventory of Food Items</h2>
       <div className="flex justify-center py-8 ml-32 mr-32">
         <div>
           <div className="grid grid-cols-[.5fr_.5fr_1fr_.5fr_.5fr_0.5fr_0.5fr] gap-4  text-gray-500">

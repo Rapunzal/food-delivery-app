@@ -9,7 +9,8 @@ const Login = ({ showLogin, setShowLogin }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { setUser, setTokens, user, setIsLoggedIn } = userStore.getState();
+  const { setUser, setTokens, user, setIsLoggedIn, setRole, role } =
+    userStore.getState();
   const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,7 +35,11 @@ const Login = ({ showLogin, setShowLogin }) => {
         if (response.statusText === "OK") {
           setShowLogin(false);
           setIsLoggedIn(true);
-          navigate("/menu");
+          setRole(response.data.role);
+          console.log(role, " role====");
+          if (role === "admin") {
+            navigate("/admin/foodList");
+          } else if (role === "user") navigate("/menu");
         }
       } catch (error) {
         console.log(error);
