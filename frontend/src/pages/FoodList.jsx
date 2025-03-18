@@ -10,7 +10,7 @@ const FoodList = () => {
 
   const foodList = foodItemsStore((state) => state.foodItems);
   const navigate = useNavigate();
-  //   console.log(foodItems, " in menu--");
+
   useEffect(() => {
     getData();
   }, [getData]);

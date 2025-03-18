@@ -1,10 +1,12 @@
 import React, { use } from "react";
 import useCartStore from "../stores/CartStore";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Order = () => {
   const { cartItems, cartTotal } = useCartStore();
   const userSession = JSON.parse(localStorage.getItem("user-session"));
+  const navigate = useNavigate();
   //console.log(userSession.state.accessToken);
   const Url = "http://localhost:8080/";
   let ttl = cartTotal();

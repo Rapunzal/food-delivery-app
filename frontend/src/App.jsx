@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div>
-      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
+      {showLogin ? <Login setShowLogin={(showLogin, setShowLogin)} /> : <></>}
       <Navbar setShowLogin={setShowLogin} />
       <div className="flex ">
         {shouldShowNavbar && <Sidebar />}

@@ -29,7 +29,7 @@ export async function signUp(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json("Cannot add user");
+    res.status(400).json("Cannot Create user account");
   }
 }
 

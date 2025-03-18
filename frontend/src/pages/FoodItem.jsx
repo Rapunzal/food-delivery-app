@@ -4,7 +4,7 @@ import useCartStore from "../stores/CartStore";
 const FoodItem = ({ food, index }) => {
   const { addItemToCart, removeItemFromCart, cartItems } = useCartStore();
   const cartItem = useCartStore((state) => state.cartItems);
-  console.log(cartItems[0], " in food item component");
+  // console.log(cartItems[0], " in food item component");
 
   const [quantity, setQuantity] = useState(0);
 
@@ -32,10 +32,10 @@ const FoodItem = ({ food, index }) => {
         <p>Price: ${food.price}</p>
         <div className="flex justify-end mr-4">
           <button
-            className="absolute bottom-3 rounded-full border right-4 text-l px-2 py-1 text-white bg-orange-500 hover:bg-orange-600"
+            className="absolute bottom-3 rounded-full border right-4 text-l px-4 py-1 text-white bg-orange-500 hover:bg-orange-600"
             onClick={() => addItemToCart(food)}
           >
-            Add Item
+            Add
           </button>
         </div>
       </div>

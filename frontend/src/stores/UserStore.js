@@ -8,10 +8,18 @@ const userStore = create(
       user: null,
       accessToken: null,
       refreshToken: null,
+      isLoggedIn: false,
       setUser: (user) => set({ user }),
+      setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
       setTokens: (accessToken, refreshToken) =>
         set({ accessToken, refreshToken }),
-      logout: () => set({ user: null, accessToken: null, refreshToken: null }),
+      logout: () =>
+        set({
+          user: null,
+          accessToken: null,
+          refreshToken: null,
+          isLoggedIn: false,
+        }),
     }),
     {
       name: "user-session", // the key used in localStorage to store the session

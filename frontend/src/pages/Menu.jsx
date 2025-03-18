@@ -16,8 +16,7 @@ const Menu = () => {
       const response = await axios.get(
         `http://localhost:8080/foods/category?category=${category}`
       );
-      // const food = result;
-      console.log(response, " in category");
+
       setFoodItemsByCategory(response.data.data.response);
     } catch (error) {
       console.log(error);
@@ -36,8 +35,7 @@ const Menu = () => {
     setCategory(cat);
     setIsActive(index);
   };
-  //data by category
-  // useEffect(() => {}, [getDataByCategory, category]);
+
   return (
     <div className="flex flex-col">
       <div className="flex justify-center gap-12 m-8">

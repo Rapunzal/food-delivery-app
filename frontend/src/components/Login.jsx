@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import axios from "axios";
 import userStore from "../stores/UserStore";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ setShowLogin }) => {
+const Login = ({ showLogin, setShowLogin }) => {
   const [login, setLogin] = useState(true);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { setUser, setTokens, user } = userStore.getState();
+  const { setUser, setTokens, user, setIsLoggedIn } = userStore.getState();
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     let data = {
@@ -16,22 +18,46 @@ const Login = ({ setShowLogin }) => {
       email,
       password,
     };
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/users/login",
-        data
-      );
-      console.log(response);
-      setUser(response.data);
-      console.log(user);
-      setTokens(response.data.token);
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer" + response.data.token;
-    } catch (error) {
-      console.log(error);
+    if (login) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/users/login",
+          data
+        );
+        console.log(response);
+        setUser(response.data);
+
+        setTokens(response.data.token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer" + response.data.token;
+        console.log(response.data);
+        if (response.statusText === "OK") {
+          setShowLogin(false);
+          setIsLoggedIn(true);
+          navigate("/menu");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (!login) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/users/signUp",
+          data
+        );
+        console.log(response);
+        setUser(response.data);
+        console.log(user);
+        setTokens(response.data.token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer" + response.data.token;
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
-  function handleSignUp() {}
+
   return (
     <div className="absolute z-1 w-full h-full bg-[#00000090] grid">
       <form

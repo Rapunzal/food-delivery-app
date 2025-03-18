@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import userStore from "../stores/UserStore";
 import foodItemsStore from "../stores/FoodItemStores";
 
 const Navbar = ({ setShowLogin }) => {
+  const { user, setIsLoggedIn } = userStore.getState();
+  const isLoggedIn = userStore((state) => state.isLoggedIn);
   const { foodItems, fetchData, isLoading } = foodItemsStore.getState();
   const [menu, setMenu] = useState("Home");
   const { logout } = userStore.getState();
+  const navigate = useNavigate();
   function handleMenu() {
     setMenu("Menu");
     fetchData();
   }
+  function handleLogout() {
+    logout();
+    setIsLoggedIn(false);
+    navigate("/");
+  }
+  console.log("navbar isLoggedIn", isLoggedIn);
   return (
     <div className="flex justify-between align-middle border">
       <Link to="/">
@@ -59,20 +68,22 @@ const Navbar = ({ setShowLogin }) => {
         </NavLink>
       </ul>
       <div className="flex align-middle gap-14 py-4">
-        <CiSearch className="h-10 w-10" />
+        {/* <CiSearch className="h-10 w-10" /> */}
         <div>
           <Link to="/cart">
             <CiShoppingCart className="h-10 w-10" />
           </Link>
         </div>
+        {!isLoggedIn && (
+          <button
+            onClick={() => setShowLogin(true)}
+            className="bg-orange-500 h-10 w-24  rounded-full text-white hover:bg-orange-600 "
+          >
+            Sign In
+          </button>
+        )}
         <button
-          onClick={() => setShowLogin(true)}
-          className="bg-orange-500 h-10 w-24  rounded-full text-white hover:bg-orange-600 "
-        >
-          Sign In
-        </button>
-        <button
-          onClick={() => logout()}
+          onClick={handleLogout}
           className="bg-orange-500 h-10 w-24 mr-2 rounded-full text-white hover:bg-orange-600 "
         >
           Logout

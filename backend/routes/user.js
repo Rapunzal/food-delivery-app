@@ -8,6 +8,6 @@ router.get("/", getUsers);
 
 router.post("/login", login);
 
-router.post("/signup", signUp);
+router.post("/signUp", signUp);
 
 export default router;
