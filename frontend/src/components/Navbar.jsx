@@ -82,6 +82,7 @@ const Navbar = ({ setShowLogin }) => {
             Sign In
           </button>
         )}
+        {/* <p>Hi {user.email}</p> */}
         <button
           onClick={handleLogout}
           className="bg-orange-500 h-10 w-24 mr-2 rounded-full text-white hover:bg-orange-600 "

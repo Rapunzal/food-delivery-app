@@ -14,17 +14,26 @@ export async function getUsers(req, res) {
 
 //SignUp
 export async function signUp(req, res) {
+  console.log(req.body, " body in sigup");
   let salt = await bcrypt.genSalt(10);
   let hashedPassword = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashedPassword;
+
   try {
-    const newUser = User.create(req.body);
-    let payload = { email: newUser.email, id: newUser._id, role: newUser.role };
+    // console.log(req.body, " body in sigup");
+    const newUser = await User.create(req.body);
+    console.log(newUser, " new user");
+    let payload = {
+      email: newUser.email,
+      id: newUser._id,
+      role: newUser.role,
+    };
     const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "3d" });
     res.send({
       email: newUser.email,
       id: newUser._id,
       role: newUser.role,
+
       token,
     });
   } catch (error) {

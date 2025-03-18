@@ -10,6 +10,9 @@ const Cart = () => {
     deleteItemFromCart,
     cartTotal,
   } = useCartStore();
+
+  
+
   const navigate = useNavigate();
   return (
     <div className="  flex justify-center ml-44 mr-44">

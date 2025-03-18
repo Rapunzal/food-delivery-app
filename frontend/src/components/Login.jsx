@@ -18,6 +18,7 @@ const Login = ({ showLogin, setShowLogin }) => {
       name,
       email,
       password,
+      cart: {},
     };
     if (login) {
       try {
@@ -46,6 +47,7 @@ const Login = ({ showLogin, setShowLogin }) => {
       }
     } else if (!login) {
       try {
+        console.log(data, " data");
         const response = await axios.post(
           "http://localhost:8080/users/signUp",
           data
