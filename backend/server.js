@@ -5,6 +5,7 @@ import cors from "cors";
 import router from "./routes/user.js";
 import food from "./routes/foodItem.js";
 import orderRouter from "./routes/order.js";
+import cartRouter from "./routes/cart.js";
 
 const port = "8080";
 const app = express();
@@ -20,6 +21,7 @@ app.use(router);
 app.use("/users", router);
 app.use("/foods", food);
 app.use("/orders", orderRouter);
+app.use("/carts", cartRouter);
 app.use("/images", express.static("uploads"));
 
 app.get("/", (req, res) => {
