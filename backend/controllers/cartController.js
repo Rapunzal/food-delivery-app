@@ -74,3 +74,34 @@ export const removeFromCart = async (req, res) => {
     res.json({ success: false, message: "Not able to remove from cart" });
   }
 };
+
+//Remove from cart functionality
+export const deleteFromCart = async (req, res) => {
+  try {
+    const userDoc = await User.findOne({
+      _id: req.body.user.id,
+    });
+    // console.log(userDoc, " userdoc");
+    let cartDoc = await userDoc.cart;
+
+    //find the food item by id in cartDoc
+    let cart_result = cartDoc.find((c) => c._id === req.body.item._id);
+
+    let newCart = cartDoc.filter((c) => c._id !== req.body.item._id);
+    cartDoc = [...newCart];
+
+    console.log(cartDoc, "===after remove cartdoc value");
+    const result = await User.findByIdAndUpdate(
+      req.body.user.id,
+      {
+        $set: { cart: [...cartDoc] },
+      },
+      { new: true }
+    );
+    console.log(result, " result");
+    res.json({ success: true, message: "removed from cart", cart: result });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Not able to remove from cart" });
+  }
+};

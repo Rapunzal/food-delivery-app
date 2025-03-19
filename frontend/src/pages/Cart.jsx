@@ -9,18 +9,16 @@ import foodItemsStore from "../stores/FoodItemStores";
 const Cart = () => {
   const Url = "http://localhost:8080/";
   const { user } = userStore.getState();
-  //  const { foodItems } = foodItemsStore.getState();
-  // const foodItems = foodItemsStore((state) => state.foodItems);
+
   const {
     addItemToCart,
     removeItemFromCart,
-    cartItems,
     deleteItemFromCart,
     cartTotal,
     setCartData,
   } = useCartStore();
   const cartData = useCartStore((state) => state.cartData);
-  const handleRemoveFromCart = async (item) => {
+  const decrementCart = async (item) => {
     removeItemFromCart(item);
     toast.success("Removed");
     try {
@@ -54,8 +52,19 @@ const Cart = () => {
       console.log(error);
     }
   };
-  const handleDelete = (item) => {
+  const handleDelete = async (item) => {
     deleteItemFromCart(item);
+    try {
+      const response = await axios.put(`${Url}carts/deleteFromCart`, {
+        user,
+        item: item,
+      });
+      console.log(response.data.cart.cart, " delete from cart");
+      setCartData(response.data.cart.cart);
+      console.log(cartData, " cart data");
+    } catch (error) {
+      console.log(error);
+    }
     toast.success("Removed");
   };
   const navigate = useNavigate();
@@ -92,7 +101,7 @@ const Cart = () => {
                     <p>${item.price}</p>
                     <p>
                       <button
-                        onClick={() => handleRemoveFromCart(item)}
+                        onClick={() => decrementCart(item)}
                         className="px-1  bg-orange-500 rounded text-white"
                       >
                         -

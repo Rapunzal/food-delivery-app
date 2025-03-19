@@ -44,7 +44,7 @@ const useCartStore = create((set, get) => ({
   },
   cartTotal: () => {
     return get()
-      .cartItems.reduce((total, item) => total + item.quantity * item.price, 0)
+      .cartData.reduce((total, item) => total + item.quantity * item.price, 0)
       .toFixed(2);
   },
 }));
