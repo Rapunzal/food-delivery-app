@@ -71,7 +71,7 @@ const Login = ({ showLogin, setShowLogin }) => {
   }
 
   return (
-    <div className="absolute z-1 w-full h-full bg-[#00000090] grid">
+    <div className="absolute z-20 w-full h-full bg-[#00000090] grid">
       <form
         className="place-self-center flex flex-col max-w-80 gap-6 bg-white p-7 border rounded-[4px]"
         onSubmit={handleSubmit}

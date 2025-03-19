@@ -28,9 +28,20 @@ const Cart = () => {
       console.log(error);
     }
   };
-  const incrementQuantity = (item) => {
+  const incrementQuantity = async (item) => {
     addItemToCart(item);
-    toast.success("Added");
+    try {
+      const response = await axios.put(`${Url}carts/addToCart`, {
+        user,
+        id: item._id,
+      });
+      console.log(response);
+      if (response.statusText === "OK") {
+        toast.success("Added to cart.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleDelete = (item) => {
     deleteItemFromCart(item);
@@ -38,7 +49,7 @@ const Cart = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="  flex justify-center ml-44 mr-44">
+    <div className="  flex justify-center w-full ml-44 mr-44">
       <div className="flex justify-center py-8">
         <div>
           <div>
