@@ -28,7 +28,7 @@ const FoodItem = ({ food, index }) => {
     try {
       const response = await axios.put(`${Url}carts/addToCart`, {
         user,
-        id: item._id,
+        item: item,
       });
       console.log(response.data.data.cart, " add to cart");
       setCartData(response.data.data.cart);

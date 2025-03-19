@@ -17,8 +17,9 @@ const Cart = () => {
     cartItems,
     deleteItemFromCart,
     cartTotal,
-    cartData,
+    setCartData,
   } = useCartStore();
+  const cartData = useCartStore((state) => state.cartData);
   const handleRemoveFromCart = async (item) => {
     removeItemFromCart(item);
     toast.success("Removed");
@@ -27,21 +28,25 @@ const Cart = () => {
         user,
         item,
       });
-      console.log(response);
+      // console.log(response.data.data.cart, " add to cart");
+      // setCartData(response.data.data.cart);
+      console.log(cartData, " cart data");
     } catch (error) {
       console.log(error);
     }
   };
   const incrementQuantity = async (item) => {
     console.log(cartData);
-    console.log("food items ---", foodItems);
+
     addItemToCart(item);
     try {
       const response = await axios.put(`${Url}carts/addToCart`, {
         user,
-        id: item._id,
+        item: item,
       });
-      console.log(response);
+      console.log(response.data.data.cart, " add to cart");
+      setCartData(response.data.data.cart);
+      console.log(cartData, " cart data");
       if (response.statusText === "OK") {
         toast.success("Added to cart.");
       }
@@ -70,7 +75,7 @@ const Cart = () => {
             <p>Remove</p>
           </div>
           <hr />
-          {cartItems.map((item) => (
+          {cartData.map((item) => (
             <div key={item._id}>
               {item.quantity > 0 && (
                 <div

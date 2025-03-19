@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 
 //add to cart functionality
 export const addToCart = async (req, res) => {
-  //console.log(req.body);
+  console.log(req.body.item._id);
   try {
     const userDoc = await User.findOne({
       _id: req.body.user.id,
@@ -11,7 +11,7 @@ export const addToCart = async (req, res) => {
     let cartDoc = await userDoc.cart;
 
     console.log(cartDoc, " cartDoc");
-    console.log(req.body.id);
+    console.log(req.body.item._id);
 
     // if (!cartDoc[req.body.id]) {
     //   cartDoc[req.body.id] = 1;
@@ -19,16 +19,37 @@ export const addToCart = async (req, res) => {
     //   cartDoc[req.body.id] += 1;
     // }
 
-    if (!cartDoc[req.body.id]) {
-      cartDoc[req.body.id] = 1;
+    //find the food item by id in cartDoc
+    let cart_result = cartDoc.find((c) => c._id === req.body.item._id);
+    console.log(cart_result, " before");
+    if (!cart_result) {
+      cart_result = req.body.item;
+      cart_result.quantity = 1;
+      cartDoc = [...cartDoc, cart_result];
+      //set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     } else {
-      cartDoc[req.body.id] += 1;
+      cart_result.quantity += 1;
+      // itemExists.quantity++;
+      // set({ cartItems: [...get().cartItems] });
     }
-    console.log(cartDoc, "===after cartdoc value");
+    console.log(cart_result.quantity, " after");
+    // if (!cartDoc) {
+    //   cartDoc[req.body.id] = 1;
+    // } else {
+    //   cartDoc[req.body.id] += 1;
+    // }
+    // console.log(cartDoc, "===after cartdoc value");
+    // const result = await User.findByIdAndUpdate(
+    //   req.body.user.id,
+    //   {
+    //     $set: [{ cart: cartDoc }],
+    //   },
+    //   { new: true }
+    // );
     const result = await User.findByIdAndUpdate(
       req.body.user.id,
       {
-        $set: { cart: cartDoc },
+        $set: { cart: [...cartDoc] },
       },
       { new: true }
     );
