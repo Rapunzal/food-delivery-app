@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const AddFood = () => {
   const [selectedFile, setSelectedFile] = React.useState(null);
@@ -26,7 +27,9 @@ const AddFood = () => {
       );
       console.log(response, " response");
       console.log(formData);
-
+      if (response.statusText === "Created") {
+        toast.success("Food Item Created successfully");
+      }
       form.reset(); // Reset the form after submission
     } catch (error) {
       console.log(error);
@@ -122,6 +125,7 @@ const AddFood = () => {
               <button className="border rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-500  ">
                 Add Food Item
               </button>
+              <Toaster />
             </div>
           </div>
         </form>

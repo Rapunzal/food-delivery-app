@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useCartStore from "../stores/CartStore";
 import axios from "axios";
 import userStore from "../stores/UserStore";
+import toast, { Toaster } from "react-hot-toast";
 
 const FoodItem = ({ food, index }) => {
   const { addItemToCart, removeItemFromCart, cartItems } = useCartStore();
@@ -28,6 +29,9 @@ const FoodItem = ({ food, index }) => {
         id: item._id,
       });
       console.log(response);
+      if (response.statusText === "OK") {
+        toast.success("Added to cart.");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -40,8 +44,8 @@ const FoodItem = ({ food, index }) => {
           className="w-[283px] h-40 aspect-auto overflow-hidden"
         />
       </div>
-      <div className="py-4 ml-4">
-        <h3 className="font-bold">{food.name}</h3>
+      <div className="py-4 ml-4 text-gray-500 ">
+        <h3 className="font-semibold">{food.name}</h3>
         <p className="font-extralight text-sm ">{food.description}</p>
         {/* <p>{food.category}</p> */}
         <p>Price: ${food.price}</p>
@@ -52,6 +56,7 @@ const FoodItem = ({ food, index }) => {
           >
             Add
           </button>
+          <Toaster richColors />
         </div>
       </div>
     </div>

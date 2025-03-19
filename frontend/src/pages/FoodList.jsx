@@ -3,6 +3,7 @@ import foodItemsStore from "../stores/FoodItemStores";
 import { Link, useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 const FoodList = () => {
   const { foodItems, isLoading } = foodItemsStore();
@@ -23,16 +24,20 @@ const FoodList = () => {
     console.log("in delete", id);
     try {
       const response = await axios.delete(`http://localhost:8080/foods/${id}`);
+      console.log(response);
+      if (response.statusText === "OK") {
+        toast.success("Deleted ");
+      }
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="ml-[100px] w-full ">
+    <div className="ml-[100px] w-full text-gray-600">
       <h2 className="text-center underline">Inventory of Food Items</h2>
       <div className="flex justify-center py-8 ml-32 mr-32">
         <div>
-          <div className="grid grid-cols-[.5fr_.5fr_1fr_.5fr_.5fr_0.5fr_0.5fr] gap-4  text-gray-500">
+          <div className="grid grid-cols-[.5fr_.5fr_1fr_.5fr_.5fr_0.5fr_0.5fr] gap-4  text-gray-700">
             <p>Items Image</p>
             <p>Title</p>
             <p>Description</p>
@@ -75,9 +80,10 @@ const FoodList = () => {
                   <p>
                     <RiDeleteBin6Line
                       onClick={() => deleteFoodItem(item._id)}
-                      className=" w-4 h-4"
+                      className=" w-4 h-4 cursor-pointer"
                     />
                   </p>
+                  <Toaster />
                 </div>
               }
               <hr />

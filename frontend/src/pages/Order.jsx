@@ -34,7 +34,9 @@ const Order = () => {
       console.log(error);
     }
   };
-
+  const handleClick = () => {
+    navigate("/payment");
+  };
   return (
     <div className="  flex justify-evenly  w-full">
       {/* <h1 className="text-center underline">Cart Total</h1> */}
@@ -151,7 +153,10 @@ const Order = () => {
               <p className="w-36">Total Amount:</p> {ttl}
             </div>
             <div>
-              <button className="border bg-orange-500 hover:bg-orange-600 text-white rounded px-2 my-4">
+              <button
+                onClick={handleClick}
+                className="border bg-orange-500 hover:bg-orange-600 text-white rounded px-2 my-4"
+              >
                 Place Order
               </button>
             </div>

@@ -38,9 +38,11 @@ const Login = ({ showLogin, setShowLogin }) => {
           setIsLoggedIn(true);
           setRole(response.data.role);
           console.log(role, " role====");
-          if (role === "admin") {
+          if (response.data.role === "admin") {
             navigate("/admin/foodList");
-          } else if (role === "user") navigate("/menu");
+          } else if (response.data.role === "user") {
+            navigate("/menu");
+          }
         }
       } catch (error) {
         console.log(error);
@@ -59,6 +61,9 @@ const Login = ({ showLogin, setShowLogin }) => {
         axios.defaults.headers.common["Authorization"] =
           "Bearer" + response.data.token;
         setIsLoggedIn(true);
+        if (response.statusText === "OK") {
+          navigate("/menu");
+        }
       } catch (error) {
         console.log(error);
       }

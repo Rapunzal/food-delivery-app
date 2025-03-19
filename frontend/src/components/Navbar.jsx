@@ -23,15 +23,10 @@ const Navbar = ({ setShowLogin }) => {
   }
   console.log("navbar isLoggedIn", isLoggedIn);
   return (
-    <div className="flex justify-between align-middle border">
+    <div className="flex justify-between align-middle border text-gray-700">
       <Link to="/">
-        <img
-          className="ml-10"
-          height={"100px"}
-          width="100px"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3F-aGyP3YeeKHHrz0TY-Y2AKSAguHtWkBNA&s"
-          alt="logo"
-        />
+        <img height={"100px"} width="100px" src="/SuberEats.png" alt="logo" />
+        {/* src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3F-aGyP3YeeKHHrz0TY-Y2AKSAguHtWkBNA&s" */}
       </Link>
       <ul className="flex justify-between gap-6 py-6">
         <NavLink
@@ -44,7 +39,7 @@ const Navbar = ({ setShowLogin }) => {
         </NavLink>
         <NavLink
           to={"/menu"}
-          className="active:underline active:border"
+          className="active:underline active:border "
           activestyle={{ color: "red" }}
           onClick={() => {
             handleMenu;
@@ -54,14 +49,14 @@ const Navbar = ({ setShowLogin }) => {
         </NavLink>
         <NavLink
           to="/order"
-          className="active:underline"
+          className="active:underline "
           onClick={() => setMenu("Mobile-app")}
         >
           Orders
         </NavLink>
         <NavLink
           to="/contact-us"
-          className="active:underline"
+          className="active:underline "
           onClick={() => setMenu("Contact Us")}
         >
           Contact Us
@@ -69,6 +64,7 @@ const Navbar = ({ setShowLogin }) => {
       </ul>
       <div className="flex align-middle gap-14 py-4">
         {/* <CiSearch className="h-10 w-10" /> */}
+        <div> {user && `Hi, ${user.name}`}</div>
         <div>
           <Link to="/cart">
             <CiShoppingCart className="h-10 w-10" />

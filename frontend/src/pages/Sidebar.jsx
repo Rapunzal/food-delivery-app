@@ -15,10 +15,10 @@ const Sidebar = () => {
         Add Food item
       </Link>
       <br />
-      <Link to="/admin/updateFood" className="underline">
+      {/* <Link to="/admin/updateFood" className="underline">
         Update Food item
       </Link>
-      <br />
+      <br /> */}
     </div>
   );
 };

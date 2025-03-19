@@ -1,8 +1,13 @@
 import React from "react";
 import useCartStore from "../stores/CartStore";
 import { useNavigate } from "react-router-dom";
+import userStore from "../stores/UserStore";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Cart = () => {
+  const Url = "http://localhost:8080/";
+  const { user } = userStore.getState();
   const {
     addItemToCart,
     removeItemFromCart,
@@ -10,9 +15,27 @@ const Cart = () => {
     deleteItemFromCart,
     cartTotal,
   } = useCartStore();
-
-  
-
+  const handleRemoveFromCart = async (item) => {
+    removeItemFromCart(item);
+    toast.success("Removed");
+    try {
+      const response = await axios.put(`${Url}carts/removeFromCart`, {
+        user,
+        item,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const incrementQuantity = (item) => {
+    addItemToCart(item);
+    toast.success("Added");
+  };
+  const handleDelete = (item) => {
+    deleteItemFromCart(item);
+    toast.success("Removed");
+  };
   const navigate = useNavigate();
   return (
     <div className="  flex justify-center ml-44 mr-44">
@@ -46,22 +69,23 @@ const Cart = () => {
                   <p>${item.price}</p>
                   <p>
                     <button
-                      onClick={() => removeItemFromCart(item)}
+                      onClick={() => handleRemoveFromCart(item)}
                       className="px-1  bg-orange-500 rounded text-white"
                     >
                       -
                     </button>
-                    {item.quantity}
+                    <span className="p-2">{item.quantity}</span>
                     <button
-                      onClick={() => addItemToCart(item)}
+                      onClick={() => incrementQuantity(item)}
                       className="px-1  bg-orange-500 rounded text-white"
                     >
                       +
                     </button>
+                    <Toaster />
                   </p>
                   <p>${(item.price * item.quantity).toFixed(2)}</p>
                   <p>
-                    <button onClick={() => deleteItemFromCart(item)}>X</button>
+                    <button onClick={() => handleDelete(item)}>X</button>
                   </p>
                 </div>
               )}

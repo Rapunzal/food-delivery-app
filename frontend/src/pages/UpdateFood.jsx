@@ -38,6 +38,7 @@ const UpdateFood = () => {
             <input
               type="text"
               name="category"
+              value={item.category}
               onChange={handleChange}
               placeholder="Enter Food Category"
               className="border rounded p-1"
@@ -48,6 +49,7 @@ const UpdateFood = () => {
             <input
               type="text"
               name="description"
+              value={item.description}
               onChange={handleChange}
               placeholder="Enter Food Description"
               className="border rounded p-1"
@@ -58,6 +60,7 @@ const UpdateFood = () => {
             <input
               type="text"
               name="price"
+              value={item.price}
               onChange={handleChange}
               placeholder="Enter Price"
               className="border rounded"
@@ -75,7 +78,7 @@ const UpdateFood = () => {
           </div>
           <div className="m-4">
             <button className="border rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-500  ">
-              Add Food Item
+              Update Food Item
             </button>
           </div>
         </form>

@@ -42,12 +42,15 @@ export const removeFromCart = async (req, res) => {
     });
     // console.log(userDoc, " userdoc");
     let cartDoc = await userDoc.cart;
-    if (Number(cartDoc[req.body.id]) === 1) {
-      delete cartDoc[req.body.id];
-    } else if (cartDoc[req.body.id] >= 1) {
-      cartDoc[req.body.id] = -1;
+    console.log("before if", cartDoc);
+    console.log("req body f", req.body);
+    if (cartDoc[req.body.item._id] === 1) {
+      delete cartDoc[req.body.item._id];
+    } else if (cartDoc[req.body.item._id] > 1) {
+      console.log("if", cartDoc[req.body.item._id]);
+      cartDoc[req.body.item._id] -= 1;
     }
-    console.log(cartDoc, "===after cartdoc value");
+    console.log(cartDoc, "===after remove cartdoc value");
     const result = await User.findByIdAndUpdate(
       req.body.user.id,
       {

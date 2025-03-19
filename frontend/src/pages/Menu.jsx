@@ -43,7 +43,7 @@ const Menu = () => {
           <button
             onClick={() => handleClick(cat, index)}
             key={index}
-            className="active:underline"
+            className="active:underline text-gray-500"
             // className={`
             //   ${isActive ? "bg-green-500" : ""}`}
           >

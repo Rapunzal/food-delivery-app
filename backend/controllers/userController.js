@@ -33,7 +33,7 @@ export async function signUp(req, res) {
       email: newUser.email,
       id: newUser._id,
       role: newUser.role,
-
+      name: newUser.name,
       token,
     });
   } catch (error) {
@@ -62,6 +62,7 @@ export async function login(req, res) {
     let payload = { email: userDoc.email, id: userDoc._id, role: userDoc.role };
     const token = jwt.sign(payload, process.env.JWT_Key, { expiresIn: "1d" });
     res.json({
+      name: userDoc.name,
       email: userDoc.email,
       id: userDoc._id,
       role: userDoc.role,
