@@ -5,9 +5,11 @@ import userStore from "../stores/UserStore";
 import toast, { Toaster } from "react-hot-toast";
 
 const FoodItem = ({ food, index }) => {
-  const { addItemToCart, removeItemFromCart, cartItems } = useCartStore();
+  const { addItemToCart, removeItemFromCart, cartItems, setCartData } =
+    useCartStore();
   const { user } = userStore.getState();
   const cartItem = useCartStore((state) => state.cartItems);
+  const cartData = useCartStore((state) => state.cartData);
   // console.log(cartItems[0], " in food item component");
   const Url = "http://localhost:8080/";
   const [quantity, setQuantity] = useState(0);
@@ -28,7 +30,9 @@ const FoodItem = ({ food, index }) => {
         user,
         id: item._id,
       });
-      console.log(response);
+      console.log(response.data.data.cart, " add to cart");
+      setCartData(response.data.data.cart);
+      console.log(cartData, " cart data");
       if (response.statusText === "OK") {
         toast.success("Added to cart.");
       }

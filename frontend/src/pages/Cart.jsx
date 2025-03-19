@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 import userStore from "../stores/UserStore";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import foodItemsStore from "../stores/FoodItemStores";
 
 const Cart = () => {
   const Url = "http://localhost:8080/";
   const { user } = userStore.getState();
+  //  const { foodItems } = foodItemsStore.getState();
+  const foodItems = foodItemsStore((state) => state.foodItems);
   const {
     addItemToCart,
     removeItemFromCart,
     cartItems,
     deleteItemFromCart,
     cartTotal,
+    cartData,
   } = useCartStore();
   const handleRemoveFromCart = async (item) => {
     removeItemFromCart(item);
@@ -29,6 +33,8 @@ const Cart = () => {
     }
   };
   const incrementQuantity = async (item) => {
+    console.log(cartData);
+    console.log("food items ---", foodItems);
     addItemToCart(item);
     try {
       const response = await axios.put(`${Url}carts/addToCart`, {

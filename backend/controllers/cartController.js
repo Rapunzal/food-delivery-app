@@ -13,6 +13,12 @@ export const addToCart = async (req, res) => {
     console.log(cartDoc, " cartDoc");
     console.log(req.body.id);
 
+    // if (!cartDoc[req.body.id]) {
+    //   cartDoc[req.body.id] = 1;
+    // } else {
+    //   cartDoc[req.body.id] += 1;
+    // }
+
     if (!cartDoc[req.body.id]) {
       cartDoc[req.body.id] = 1;
     } else {
@@ -27,7 +33,7 @@ export const addToCart = async (req, res) => {
       { new: true }
     );
     console.log(result, " result");
-    res.json({ success: true, message: "added to cart" });
+    res.json({ success: true, message: "added to cart", data: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Not able to add to cart" });

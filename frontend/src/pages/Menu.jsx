@@ -3,6 +3,7 @@ import foodItemsStore from "../stores/FoodItemStores";
 import FoodItem from "./FoodItem";
 import { Category } from "./Category";
 import axios from "axios";
+import useCartStore from "../stores/CartStore";
 
 const Menu = () => {
   const [category, setCategory] = useState("Appetizers/Starters");
