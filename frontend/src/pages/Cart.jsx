@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useCartStore from "../stores/CartStore";
 import { useNavigate } from "react-router-dom";
 import userStore from "../stores/UserStore";
@@ -13,10 +13,24 @@ const Cart = () => {
   const {
     addItemToCart,
     removeItemFromCart,
-    deleteItemFromCart,
+
     cartTotal,
     setCartData,
   } = useCartStore();
+  useEffect(() => {
+    async function getCartData() {
+      try {
+        const result = await axios.post(`${Url}carts/getCart`, { id: user.id });
+        console.log(result.data.cart);
+        if (result.statusText === "OK") {
+          setCartData(result.data.cart);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getCartData();
+  }, []);
   const cartData = useCartStore((state) => state.cartData);
   const total_amt = cartTotal();
   const decrementCart = async (item) => {
@@ -55,7 +69,7 @@ const Cart = () => {
     }
   };
   const handleDelete = async (item) => {
-    deleteItemFromCart(item);
+    // deleteItemFromCart(item);
     try {
       const response = await axios.put(`${Url}carts/deleteFromCart`, {
         user,
@@ -94,11 +108,14 @@ const Cart = () => {
                     className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] gap-4 align-middle"
                     key={item._id}
                   >
-                    <img
-                      src={`http://localhost:8080/images/${item.image}`}
-                      width="100px"
-                      height="100px"
-                    />
+                    <div className="w-[100px] h-[100px]">
+                      <img
+                        src={`http://localhost:8080/images/${item.image}`}
+                        width="100px"
+                        height="100px"
+                        className="object-cover"
+                      />
+                    </div>
                     <p>{item.name}</p>
                     <p>${item.price}</p>
                     <p>

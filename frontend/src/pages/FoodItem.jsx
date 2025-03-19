@@ -45,7 +45,7 @@ const FoodItem = ({ food, index }) => {
       <div>
         <img
           src={`http://localhost:8080/images/${food.image}`}
-          className="w-[283px] h-40 aspect-auto overflow-hidden"
+          className="w-[283px] h-40 object-cover"
         />
       </div>
       <div className="py-4 ml-4 text-gray-500 ">

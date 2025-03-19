@@ -105,3 +105,17 @@ export const deleteFromCart = async (req, res) => {
     res.json({ success: false, message: "Not able to remove from cart" });
   }
 };
+
+//Get user cart
+export const getCart = async (req, res) => {
+  try {
+    console.log(req.body, " req body");
+    const userDoc = await User.findOne({ _id: req.body.id });
+    //console.log(userDoc, " userdoc in getCart----");
+    let cartDoc = await userDoc.cart;
+    console.log(cartDoc, " cartDoc");
+    res.json({ success: true, message: "cart data", cart: cartDoc });
+  } catch (error) {
+    console.log(error);
+  }
+};

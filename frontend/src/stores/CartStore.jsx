@@ -31,19 +31,19 @@ const useCartStore = create((set, get) => ({
       //  set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     }
   },
-  deleteItemFromCart: (item) => {
-    const itemToBeRemoved = get().cartItems.find(
-      (cart) => cart._id === item._id
-    );
+  // deleteItemFromCart: (item) => {
+  //   const itemToBeRemoved = get().cartItems.find(
+  //     (cart) => cart._id === item._id
+  //   );
 
-    if (itemToBeRemoved.quantity) {
-      set({
-        cartItems: get().cartItems.filter(
-          (cartItem) => cartItem._id !== item._id
-        ),
-      });
-    }
-  },
+  //   if (itemToBeRemoved.quantity) {
+  //     set({
+  //       cartItems: get().cartItems.filter(
+  //         (cartItem) => cartItem._id !== item._id
+  //       ),
+  //     });
+  //   }
+  // },
   cartTotal: () => {
     return get()
       .cartData.reduce((total, item) => {
