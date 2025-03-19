@@ -17,6 +17,7 @@ import AdminHomePage from "./pages/AdminHomePage";
 import AdminLayout from "./pages/AdminLayout";
 import Sidebar from "./pages/Sidebar";
 import Payment from "./pages/Payment";
+import GenerateOrder from "./pages/GenerateOrder";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -53,6 +54,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/generateOrder" element={<GenerateOrder />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

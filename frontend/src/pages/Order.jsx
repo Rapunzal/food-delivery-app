@@ -38,11 +38,11 @@ const Order = () => {
     navigate("/payment");
   };
   return (
-    <div className="  flex justify-evenly  w-full">
+    <div className="  flex justify-evenly  w-full py-10">
       {/* <h1 className="text-center underline">Cart Total</h1> */}
       {/* <p>{userSession !== null && userSession.state.user.email}</p> */}
       <div>
-        <p className="text-center">Address</p>
+        <p className="text-center text-xl">Shipping Address</p>
         <form className="border border-gray-200 p-4" onSubmit={handleSubmit}>
           <div className="m-2">
             <label className="inline-block w-40 text-left ">First Name :</label>
@@ -150,11 +150,12 @@ const Order = () => {
               <p className="w-36">Delivery Charges:</p> $5
             </div>
             <div className="flex">
-              <p className="w-36">Total Amount:</p> {ttl}
+              <p className="w-36">Total Amount:</p> ${ttl}
             </div>
             <div>
               <button
                 onClick={handleClick}
+                disabled={ttl <= 0}
                 className="border bg-orange-500 hover:bg-orange-600 text-white rounded px-2 my-4"
               >
                 Place Order

@@ -18,6 +18,7 @@ const Cart = () => {
     setCartData,
   } = useCartStore();
   const cartData = useCartStore((state) => state.cartData);
+  const total_amt = cartTotal();
   const decrementCart = async (item) => {
     removeItemFromCart(item);
     toast.success("Removed");
@@ -34,6 +35,7 @@ const Cart = () => {
     }
   };
   const incrementQuantity = async (item) => {
+    console.log(cartTotal, " car total----");
     console.log(cartData);
 
     addItemToCart(item);
@@ -69,7 +71,7 @@ const Cart = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="  flex justify-center w-full ml-44 mr-44">
+    <div className="  flex h-screen justify-center w-full ml-44 mr-44">
       <div className="flex justify-center py-8">
         <div>
           <div>
@@ -124,10 +126,10 @@ const Cart = () => {
                 <hr />
               </div>
             ))}
-          <div className="flex justify-end">Sub Total : ${cartTotal()}</div>
+          <div className="flex justify-end">Sub Total : {total_amt}</div>
           <div className="flex justify-end">
             <button
-              disabled={Number(cartTotal()) <= 0}
+              disabled={total_amt <= 0}
               className="bg-orange-500 disabled:bg-orange-300 px-2 py-1 text-white rounded-full hover:bg-orange-600"
               onClick={() => navigate("/order")}
             >
