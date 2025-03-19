@@ -10,7 +10,7 @@ const Cart = () => {
   const Url = "http://localhost:8080/";
   const { user } = userStore.getState();
   //  const { foodItems } = foodItemsStore.getState();
-  const foodItems = foodItemsStore((state) => state.foodItems);
+  // const foodItems = foodItemsStore((state) => state.foodItems);
   const {
     addItemToCart,
     removeItemFromCart,
@@ -26,10 +26,10 @@ const Cart = () => {
     try {
       const response = await axios.put(`${Url}carts/removeFromCart`, {
         user,
-        item,
+        item: item,
       });
-      // console.log(response.data.data.cart, " add to cart");
-      // setCartData(response.data.data.cart);
+      console.log(response.data.cart.cart, " delete from cart");
+      setCartData(response.data.cart.cart);
       console.log(cartData, " cart data");
     } catch (error) {
       console.log(error);
@@ -75,45 +75,46 @@ const Cart = () => {
             <p>Remove</p>
           </div>
           <hr />
-          {cartData.map((item) => (
-            <div key={item._id}>
-              {item.quantity > 0 && (
-                <div
-                  className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] gap-4 align-middle"
-                  key={item._id}
-                >
-                  <img
-                    src={`http://localhost:8080/images/${item.image}`}
-                    width="100px"
-                    height="100px"
-                  />
-                  <p>{item.name}</p>
-                  <p>${item.price}</p>
-                  <p>
-                    <button
-                      onClick={() => handleRemoveFromCart(item)}
-                      className="px-1  bg-orange-500 rounded text-white"
-                    >
-                      -
-                    </button>
-                    <span className="p-2">{item.quantity}</span>
-                    <button
-                      onClick={() => incrementQuantity(item)}
-                      className="px-1  bg-orange-500 rounded text-white"
-                    >
-                      +
-                    </button>
-                    <Toaster />
-                  </p>
-                  <p>${(item.price * item.quantity).toFixed(2)}</p>
-                  <p>
-                    <button onClick={() => handleDelete(item)}>X</button>
-                  </p>
-                </div>
-              )}
-              <hr />
-            </div>
-          ))}
+          {cartData &&
+            cartData.map((item) => (
+              <div key={item._id}>
+                {item.quantity > 0 && (
+                  <div
+                    className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] gap-4 align-middle"
+                    key={item._id}
+                  >
+                    <img
+                      src={`http://localhost:8080/images/${item.image}`}
+                      width="100px"
+                      height="100px"
+                    />
+                    <p>{item.name}</p>
+                    <p>${item.price}</p>
+                    <p>
+                      <button
+                        onClick={() => handleRemoveFromCart(item)}
+                        className="px-1  bg-orange-500 rounded text-white"
+                      >
+                        -
+                      </button>
+                      <span className="p-2">{item.quantity}</span>
+                      <button
+                        onClick={() => incrementQuantity(item)}
+                        className="px-1  bg-orange-500 rounded text-white"
+                      >
+                        +
+                      </button>
+                      <Toaster />
+                    </p>
+                    <p>${(item.price * item.quantity).toFixed(2)}</p>
+                    <p>
+                      <button onClick={() => handleDelete(item)}>X</button>
+                    </p>
+                  </div>
+                )}
+                <hr />
+              </div>
+            ))}
           <div className="flex justify-end">Sub Total : ${cartTotal()}</div>
           <div className="flex justify-end">
             <button

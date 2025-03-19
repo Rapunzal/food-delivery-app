@@ -13,12 +13,6 @@ export const addToCart = async (req, res) => {
     console.log(cartDoc, " cartDoc");
     console.log(req.body.item._id);
 
-    // if (!cartDoc[req.body.id]) {
-    //   cartDoc[req.body.id] = 1;
-    // } else {
-    //   cartDoc[req.body.id] += 1;
-    // }
-
     //find the food item by id in cartDoc
     let cart_result = cartDoc.find((c) => c._id === req.body.item._id);
     console.log(cart_result, " before");
@@ -26,26 +20,11 @@ export const addToCart = async (req, res) => {
       cart_result = req.body.item;
       cart_result.quantity = 1;
       cartDoc = [...cartDoc, cart_result];
-      //set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
     } else {
       cart_result.quantity += 1;
-      // itemExists.quantity++;
-      // set({ cartItems: [...get().cartItems] });
     }
     console.log(cart_result.quantity, " after");
-    // if (!cartDoc) {
-    //   cartDoc[req.body.id] = 1;
-    // } else {
-    //   cartDoc[req.body.id] += 1;
-    // }
-    // console.log(cartDoc, "===after cartdoc value");
-    // const result = await User.findByIdAndUpdate(
-    //   req.body.user.id,
-    //   {
-    //     $set: [{ cart: cartDoc }],
-    //   },
-    //   { new: true }
-    // );
+
     const result = await User.findByIdAndUpdate(
       req.body.user.id,
       {
@@ -69,24 +48,27 @@ export const removeFromCart = async (req, res) => {
     });
     // console.log(userDoc, " userdoc");
     let cartDoc = await userDoc.cart;
-    console.log("before if", cartDoc);
-    console.log("req body f", req.body);
-    if (cartDoc[req.body.item._id] === 1) {
-      delete cartDoc[req.body.item._id];
-    } else if (cartDoc[req.body.item._id] > 1) {
-      console.log("if", cartDoc[req.body.item._id]);
-      cartDoc[req.body.item._id] -= 1;
+
+    //find the food item by id in cartDoc
+    let cart_result = cartDoc.find((c) => c._id === req.body.item._id);
+
+    if (cart_result.quantity === 1) {
+      let newCart = cartDoc.filter((c) => c._id !== req.body.item._id);
+      cartDoc = [...newCart];
+    } else {
+      cart_result.quantity -= 1;
     }
+
     console.log(cartDoc, "===after remove cartdoc value");
     const result = await User.findByIdAndUpdate(
       req.body.user.id,
       {
-        $set: { cart: cartDoc },
+        $set: { cart: [...cartDoc] },
       },
       { new: true }
     );
     console.log(result, " result");
-    res.json({ success: true, message: "removed from cart" });
+    res.json({ success: true, message: "removed from cart", cart: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Not able to remove from cart" });
