@@ -23,7 +23,7 @@ export const addToCart = async (req, res) => {
     } else {
       cart_result.quantity += 1;
     }
-    console.log(cart_result.quantity, " after");
+    console.log(cart_result, " after");
 
     const result = await User.findByIdAndUpdate(
       req.body.user.id,

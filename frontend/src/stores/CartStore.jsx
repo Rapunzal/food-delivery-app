@@ -4,6 +4,8 @@ import { create } from "zustand";
 const useCartStore = create((set, get) => ({
   cartItems: [],
   cartData: [],
+  orderId: "",
+  setOrderId: (orderId) => set({ orderId }),
   setCartData: (cartData) => set({ cartData }),
   addItemToCart: (item) => {
     console.log("in cart store add to cart");

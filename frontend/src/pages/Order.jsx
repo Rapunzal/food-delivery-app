@@ -4,7 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Order = () => {
-  const { cartItems, cartTotal } = useCartStore();
+  const { cartItems, cartTotal, setOrderId, setCartData, cartData } =
+    useCartStore();
   const userSession = JSON.parse(localStorage.getItem("user-session"));
   const navigate = useNavigate();
   //console.log(userSession.state.accessToken);
@@ -26,17 +27,20 @@ const Order = () => {
       const response = await axios.post(`${Url}orders/place/`, {
         address: formData,
         userId: userSession.state.user.id,
-        cartItems: cartItems,
+        cartItems: cartData,
         totalAmount: ttl,
       });
       console.log(response, " order page response");
+      setCartData([]);
+      setOrderId(response.data.response._id);
+      if (response.statusText === "OK") {
+        navigate("/payment");
+      }
     } catch (error) {
       console.log(error);
     }
   };
-  const handleClick = () => {
-    navigate("/payment");
-  };
+  const handleClick = () => {};
   return (
     <div className="  flex justify-evenly  w-full py-10">
       {/* <h1 className="text-center underline">Cart Total</h1> */}

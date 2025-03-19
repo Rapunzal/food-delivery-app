@@ -1,21 +1,47 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../stores/CartStore";
+import userStore from "../stores/UserStore";
+import axios from "axios";
 
 const Payment = () => {
+  const Url = "http://localhost:8080/";
   const navigate = useNavigate();
+  const { user } = userStore.getState();
+  const { setCartData } = useCartStore();
+  const cartData = useCartStore((state) => state.cartData);
   const { cartTotal } = useCartStore();
-  const handlePayment = (e) => {
-    e.preventDefault();
+  const handlePayment = async (event) => {
+    event.preventDefault();
     navigate("/generateOrder");
+    // const form = event.target;
+    // const formData = new FormData(form);
+    // console.log(formData);
+    // try {
+    //   const response = await axios.post(`${Url}orders/place`, {
+    //     address: formData,
+    //     userId: user.id,
+    //     cartItems: cartData,
+    //     totalAmount: cartTotal(),
+    //     payment: true,
+    //   });
+    //   console.log(response, " payment  response");
+    //   console.log(response.data.response, " payment  response");
+    //   setCartData([]);
+    //   navigate("/generateOrder", {
+    //     state: { result: response.data.response._id },
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <div className="h-screen py-10 flex justify-center align-middle w-full">
       <div className="mt-20 mr-4 text-xl">Total Amount: ${cartTotal()}</div>
-      <div className="border h-[340px] w-[350px]">
+      <div className="border h-[380px] w-[350px]">
         <h2 className="text-center p-4 text-gray-500 ">Credit Card Details</h2>
-        <h3 lassName="text-center p-4 text-gray-500 "></h3>
-        <form className="grid grid-cols-1 gap-4 p-4">
+        <h3 className="text-center p-4 text-gray-500 "></h3>
+        <form className="grid grid-cols-1 gap-4 p-4" onSubmit={handlePayment}>
           <div className="grid grid-cols-1">
             <input
               type="text"
@@ -38,11 +64,8 @@ const Payment = () => {
             <img src="./credit_card.jpg" className="h-16 w-36" />
           </div>
           <div className="grid grid-cols-1">
-            <button
-              onClick={handlePayment}
-              className="bg-orange-400 text-white rounded"
-            >
-              Pay
+            <button className="bg-orange-400 text-white rounded">
+              Sumbit Payment
             </button>
           </div>
         </form>

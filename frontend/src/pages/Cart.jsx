@@ -71,7 +71,7 @@ const Cart = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="  flex h-screen justify-center w-full ml-44 mr-44">
+    <div className="  flex min-h-screen justify-center w-full ml-44 mr-44">
       <div className="flex justify-center py-8">
         <div>
           <div>

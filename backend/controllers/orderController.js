@@ -15,7 +15,7 @@ export const placeOrder = async (req, res) => {
     });
     const response = await newOrder.save();
     console.log(response);
-    await userModel.findByIdAndUpdate(req.body.userId, { cart: {} });
+    await userModel.findByIdAndUpdate(req.body.userId, { cart: [] });
     res.json({ response });
   } catch (error) {
     res.status(400).send({ msg: "error" });
