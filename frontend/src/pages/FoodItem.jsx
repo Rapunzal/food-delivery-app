@@ -4,6 +4,7 @@ import axios from "axios";
 import userStore from "../stores/UserStore";
 import toast, { Toaster } from "react-hot-toast";
 
+//Food item component to display each food item as a card
 const FoodItem = ({ food, index }) => {
   const { addItemToCart, removeItemFromCart, cartItems, setCartData } =
     useCartStore();

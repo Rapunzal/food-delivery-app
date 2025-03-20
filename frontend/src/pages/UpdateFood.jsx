@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import foodItemsStore from "../stores/FoodItemStores";
 import { useLocation } from "react-router-dom";
 
+//Admin page to update food item
 const UpdateFood = () => {
   const location = useLocation();
   // get userId

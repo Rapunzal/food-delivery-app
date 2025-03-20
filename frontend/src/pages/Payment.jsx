@@ -5,6 +5,7 @@ import userStore from "../stores/UserStore";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
+//Payment page for credit card details
 const Payment = () => {
   let url = import.meta.env.VITE_API;
   //const Url = "http://localhost:8080/";

@@ -5,6 +5,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import userStore from "../stores/UserStore";
 import foodItemsStore from "../stores/FoodItemStores";
 
+//Navbar component common to all components
 const Navbar = ({ setShowLogin }) => {
   const { user, setIsLoggedIn } = userStore.getState();
   const isLoggedIn = userStore((state) => state.isLoggedIn);

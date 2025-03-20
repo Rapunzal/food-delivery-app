@@ -5,6 +5,7 @@ import { Category } from "./Category";
 import axios from "axios";
 import useCartStore from "../stores/CartStore";
 
+//Displays all the components of food and on selecting one that particular data is displayed
 const Menu = () => {
   //let url = import.meta.env.VITE_API;
   let url = "http://localhost:8080";

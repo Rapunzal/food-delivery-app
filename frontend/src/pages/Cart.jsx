@@ -6,6 +6,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import foodItemsStore from "../stores/FoodItemStores";
 
+//Cart component
 const Cart = () => {
   const Url = "http://localhost:8080";
 
@@ -19,6 +20,7 @@ const Cart = () => {
     cartTotal,
     setCartData,
   } = useCartStore();
+  //To get all the cart data from backend
   useEffect(() => {
     async function getCartData() {
       try {
@@ -37,6 +39,7 @@ const Cart = () => {
   }, []);
   const cartData = useCartStore((state) => state.cartData);
   const total_amt = cartTotal();
+  //Function to decrement quantity
   const decrementCart = async (item) => {
     removeItemFromCart(item);
     toast.success("Removed");
@@ -52,6 +55,7 @@ const Cart = () => {
       console.log(error);
     }
   };
+  //Function to increment quantity
   const incrementQuantity = async (item) => {
     console.log(cartTotal, " car total----");
     console.log(cartData);
@@ -72,6 +76,8 @@ const Cart = () => {
       console.log(error);
     }
   };
+
+  //To delete an item from cart
   const handleDelete = async (item) => {
     // deleteItemFromCart(item);
     try {

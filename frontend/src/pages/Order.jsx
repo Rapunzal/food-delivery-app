@@ -3,6 +3,7 @@ import useCartStore from "../stores/CartStore";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+//Order [age to generate order]
 const Order = () => {
   const { cartItems, cartTotal, setOrderId, setCartData, cartData } =
     useCartStore();

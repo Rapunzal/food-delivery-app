@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
+//Foodlist componet to display list of all food items in admin component
 const FoodList = () => {
   //let url = import.meta.env.VITE_API;
   let url = "http://localhost:8080";

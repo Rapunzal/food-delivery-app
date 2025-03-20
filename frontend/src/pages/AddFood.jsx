@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
+//Add food page for admin
 const AddFood = () => {
   //let url = import.meta.env.VITE_API;
   let url = "http://localhost:8080";

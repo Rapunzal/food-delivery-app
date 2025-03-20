@@ -3,6 +3,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 
+//Contact page
 const ContactUs = () => {
   return (
     <div className="h-[500px]">

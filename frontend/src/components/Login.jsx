@@ -4,6 +4,7 @@ import axios from "axios";
 import userStore from "../stores/UserStore";
 import { useNavigate } from "react-router-dom";
 
+//Login Component
 const Login = ({ showLogin, setShowLogin }) => {
   //let url = import.meta.env.VITE_API;
   let url = "http://localhost:8080";
@@ -22,6 +23,7 @@ const Login = ({ showLogin, setShowLogin }) => {
       password,
       cart: {},
     };
+    //Login logic
     if (login) {
       try {
         const response = await axios.post(`${url}/users/login`, data);
@@ -48,6 +50,7 @@ const Login = ({ showLogin, setShowLogin }) => {
         console.log(error);
       }
     } else if (!login) {
+      //Signup logic
       try {
         console.log(data, " data");
         const response = await axios.post(`${url}/users/signUp`, data);

@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
 import { MdOutlineAddBox } from "react-icons/md";
 
+//Sidebar for admin panel
 const Sidebar = () => {
   return (
     <div

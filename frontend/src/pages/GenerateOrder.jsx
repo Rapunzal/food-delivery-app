@@ -3,6 +3,7 @@ import useCartStore from "../stores/CartStore";
 import userStore from "../stores/UserStore";
 import { useLocation } from "react-router-dom";
 
+//Page to generate order
 const GenerateOrder = () => {
   const { user } = userStore.getState();
   const cartData = useCartStore((state) => state.cartData);
