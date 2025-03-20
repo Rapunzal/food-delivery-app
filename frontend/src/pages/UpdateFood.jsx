@@ -66,7 +66,7 @@ const UpdateFood = () => {
               className="border rounded"
             />
           </div>
-          <div className="m-4">
+          {/* <div className="m-4">
             <label>Upload Food Image : </label>
             <input
               type="file"
@@ -75,7 +75,7 @@ const UpdateFood = () => {
               accept="image/png, image/jpeg"
               className="border rounded"
             />
-          </div>
+          </div> */}
           <div className="m-4">
             <button className="border rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-500  ">
               Update Food Item

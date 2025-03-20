@@ -90,7 +90,7 @@ export const deleteFoodItem = async (req, res) => {
     fs.unlink(`uploads/${item.image}`, () => {});
     const response = await FoodItem.findByIdAndDelete({ _id: req.params.id });
     console.log("Deleted successfully");
-    res.json("deleted successfully");
+    res.json({ message: "deleted successfully", response });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: " Item could not be deleted" });

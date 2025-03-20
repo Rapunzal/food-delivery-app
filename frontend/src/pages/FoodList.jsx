@@ -14,7 +14,7 @@ const FoodList = () => {
 
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, []);
 
   if (!foodList.length) {
     return "Loading Food Items";
@@ -24,8 +24,10 @@ const FoodList = () => {
     console.log("in delete", id);
     try {
       const response = await axios.delete(`http://localhost:8080/foods/${id}`);
-      console.log(response);
+      console.log(response, "deleteFoodItem");
       if (response.statusText === "OK") {
+        // const list_food = foodItems.filter((food) => food._id === id);
+        getData();
         toast.success("Deleted ");
       }
     } catch (error) {
@@ -33,8 +35,8 @@ const FoodList = () => {
     }
   };
   return (
-    <div className="ml-[100px] w-full text-gray-600">
-      <h2 className="text-center underline">Inventory of Food Items</h2>
+    <div className="ml-[100px] w-full text-gray-600 py-10">
+      <h2 className="text-center  text-xl">Inventory of Food Items</h2>
       <div className="flex justify-center py-8 ml-32 mr-32">
         <div>
           <div className="grid grid-cols-[.5fr_.5fr_1fr_.5fr_.5fr_0.5fr_0.5fr] gap-4  text-gray-700">
@@ -54,11 +56,13 @@ const FoodList = () => {
                   className="grid grid-cols-[.5fr_.5fr_1fr_.5fr_.5fr_0.5fr_0.5fr] gap-4 align-middle"
                   key={item._id}
                 >
-                  <img
-                    src={`http://localhost:8080/images/${item.image}`}
-                    width="100px"
-                    height="100px"
-                  />
+                  <div className="object-cover w-[100px] h-[100px]">
+                    <img
+                      src={`http://localhost:8080/images/${item.image}`}
+                      width="100px"
+                      height="100px"
+                    />
+                  </div>
                   <p>{item.name}</p>
                   <p>{item.description}</p>
                   <p>${item.price}</p>
@@ -72,7 +76,7 @@ const FoodList = () => {
                           },
                         })
                       }
-                      className="border rounded px-1 py-0 bg-orange-400 text-white hover:bg-orange-500"
+                      className="border rounded px-2 py-0 bg-orange-500 text-white hover:bg-orange-600"
                     >
                       Update
                     </button>
