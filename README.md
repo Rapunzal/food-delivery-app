@@ -28,11 +28,13 @@ Render Backend Link - https://food-delivery-app-backend-74uc.onrender.com
 2. Filtering of menu according to category of food.
 3. Displaying of all the menu items according to category .
 4. Cart Management- Adding food item to cart, incrementing ,decrementing quantity as well as removing item from cart.
-5. Used Toastify for success messages.
+5. Used Toastify for success popups.
 6. Used Multer to upload images.
 7. Admin route is protected only user with admin role can go to admin routes, noraml user is redirected to home page if the navigate to that url.
 8. User react-router-dom for navigation.
 9. Used Zustand ,useState,useEffect,UseNavigation and useLocation.
+10. Used React Favicon to display icons.
+11. Used Tailwind CSS for styling the app.
 
 ## Usage instructions, if relevant.
 
