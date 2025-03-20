@@ -22,10 +22,14 @@ const Navbar = ({ setShowLogin }) => {
     navigate("/");
   }
   console.log("navbar isLoggedIn", isLoggedIn);
+  let activeStyle = {
+    textDecoration: "underline",
+  };
+
   return (
     <div className="flex justify-between align-middle border text-gray-700">
       <Link to="/">
-        <img height={"100px"} width="100px" src="/SuberEats.png" alt="logo" />
+        <img height={"200px"} width="200px" src="/subereats2.png" alt="logo" />
         {/* src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3F-aGyP3YeeKHHrz0TY-Y2AKSAguHtWkBNA&s" */}
       </Link>
       <ul className="flex justify-between gap-6 py-6">
@@ -34,6 +38,7 @@ const Navbar = ({ setShowLogin }) => {
           to={"/"}
           className="active:underline"
           onClick={() => setMenu("Home")}
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Home
         </NavLink>
@@ -44,6 +49,7 @@ const Navbar = ({ setShowLogin }) => {
           onClick={() => {
             handleMenu;
           }}
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Menu
         </NavLink>
@@ -51,6 +57,7 @@ const Navbar = ({ setShowLogin }) => {
           to="/order"
           className="active:underline "
           onClick={() => setMenu("Mobile-app")}
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Orders
         </NavLink>
@@ -58,6 +65,7 @@ const Navbar = ({ setShowLogin }) => {
           to="/contact-us"
           className="active:underline "
           onClick={() => setMenu("Contact Us")}
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Contact Us
         </NavLink>

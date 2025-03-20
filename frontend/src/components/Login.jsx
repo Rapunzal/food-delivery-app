@@ -56,13 +56,15 @@ const Login = ({ showLogin, setShowLogin }) => {
         );
         console.log(response);
         setUser(response.data);
-        console.log(user);
+        // console.log(user);
         setTokens(response.data.token);
         axios.defaults.headers.common["Authorization"] =
           "Bearer" + response.data.token;
         setIsLoggedIn(true);
+        console.log(response.statusText);
         if (response.statusText === "OK") {
           navigate("/menu");
+          setShowLogin(false);
         }
       } catch (error) {
         console.log(error);

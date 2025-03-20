@@ -1,8 +1,5 @@
 import OrderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
-import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.Stripe_Key);
 
 //Place order
 export const placeOrder = async (req, res) => {

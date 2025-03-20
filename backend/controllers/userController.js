@@ -20,7 +20,8 @@ export async function signUp(req, res) {
   req.body.password = hashedPassword;
 
   try {
-    // console.log(req.body, " body in sigup");
+    console.log(req.body, " body in sigup");
+    req.body.cart = [];
     const newUser = await User.create(req.body);
     console.log(newUser, " new user");
     let payload = {
@@ -34,6 +35,7 @@ export async function signUp(req, res) {
       id: newUser._id,
       role: newUser.role,
       name: newUser.name,
+      cart: [],
       token,
     });
   } catch (error) {

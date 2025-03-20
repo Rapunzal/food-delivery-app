@@ -34,7 +34,9 @@ const Order = () => {
       setCartData([]);
       setOrderId(response.data.response._id);
       if (response.statusText === "OK") {
-        navigate("/payment");
+        navigate("/payment", {
+          state: { result: ttl },
+        });
       }
     } catch (error) {
       console.log(error);

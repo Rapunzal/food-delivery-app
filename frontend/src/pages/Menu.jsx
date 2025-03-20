@@ -45,6 +45,7 @@ const Menu = () => {
             onClick={() => handleClick(cat, index)}
             key={index}
             className="active:underline text-gray-500"
+
             // className={`
             //   ${isActive ? "bg-green-500" : ""}`}
           >
