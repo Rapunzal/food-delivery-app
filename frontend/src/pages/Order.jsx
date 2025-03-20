@@ -32,9 +32,10 @@ const Order = () => {
         totalAmount: ttl,
       });
       console.log(response, " order page response");
-      setCartData([]);
+
       setOrderId(response.data.response._id);
       if (response.statusText === "OK") {
+        setCartData([]);
         navigate("/payment", {
           state: { result: ttl },
         });
@@ -43,7 +44,7 @@ const Order = () => {
       console.log(error);
     }
   };
-  const handleClick = () => {};
+
   return (
     <div className="  flex justify-evenly  w-full py-10">
       {/* <h1 className="text-center underline">Cart Total</h1> */}
@@ -161,7 +162,7 @@ const Order = () => {
             </div>
             <div>
               <button
-                onClick={handleClick}
+                // onClick={handleClick}
                 disabled={ttl <= 0}
                 className="border bg-orange-500 hover:bg-orange-600 text-white rounded px-2 my-4"
               >

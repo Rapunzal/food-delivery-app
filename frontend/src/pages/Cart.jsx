@@ -113,7 +113,7 @@ const Cart = () => {
                   >
                     <div className="w-[100px] h-[100px]">
                       <img
-                        src={`http://localhost:8080/images/${item.image}`}
+                        src={`${Url}/images/${item.image}`}
                         width="100px"
                         height="100px"
                         className="object-cover"
