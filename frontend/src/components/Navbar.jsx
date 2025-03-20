@@ -30,7 +30,6 @@ const Navbar = ({ setShowLogin }) => {
     <div className="flex justify-between align-middle border text-gray-700">
       <Link to="/">
         <img height={"200px"} width="200px" src="/subereats2.png" alt="logo" />
-        {/* src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3F-aGyP3YeeKHHrz0TY-Y2AKSAguHtWkBNA&s" */}
       </Link>
       <ul className="flex justify-between gap-6 py-6">
         <NavLink

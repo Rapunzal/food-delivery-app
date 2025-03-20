@@ -8,8 +8,9 @@ const Order = () => {
     useCartStore();
   const userSession = JSON.parse(localStorage.getItem("user-session"));
   const navigate = useNavigate();
-  //console.log(userSession.state.accessToken);
-  const Url = "http://localhost:8080/";
+
+  // const Url = "http://localhost:8080/";
+  let url = import.meta.env.VITE_API;
   let ttl = cartTotal();
   if (Number(ttl) > 0) {
     ttl = Number(ttl) + 5;
@@ -24,7 +25,7 @@ const Order = () => {
     console.log(formData.get("firstName"));
 
     try {
-      const response = await axios.post(`${Url}orders/place/`, {
+      const response = await axios.post(`${url}/orders/place/`, {
         address: formData,
         userId: userSession.state.user.id,
         cartItems: cartData,

@@ -6,6 +6,7 @@ import axios from "axios";
 import useCartStore from "../stores/CartStore";
 
 const Menu = () => {
+  let url = import.meta.env.VITE_API;
   const [category, setCategory] = useState("Appetizers/Starters");
   const [foodItemsByCategory, setFoodItemsByCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +16,7 @@ const Menu = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8080/foods/category?category=${category}`
+        `${url}/foods/category?category=${category}`
       );
 
       setFoodItemsByCategory(response.data.data.response);

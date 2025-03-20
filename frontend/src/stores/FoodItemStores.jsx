@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
-
+let url = import.meta.env.VITE_API;
 const foodItemsStore = create((set) => ({
   foodItems: [],
   foodItemsByCategory: [],
@@ -11,7 +11,7 @@ const foodItemsStore = create((set) => ({
   fetchData: async () => {
     set({ isLoading: true });
     try {
-      const response = await axios.get("http://localhost:8080/foods/");
+      const response = await axios.get(`${url}/foods/`);
       // const food = result;
       console.log(response.data.data.foodItems);
       set({ foodItems: response.data.data.foodItems });
@@ -27,7 +27,7 @@ const foodItemsStore = create((set) => ({
     set({ isLoading: true });
     try {
       const response = await axios.get(
-        `http://localhost:8080/foods/category?category=${categoryStore}`
+        `${url}/foods/category?category=${categoryStore}`
       );
       // const food = result;
       console.log(response, " in category");

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 const FoodList = () => {
+  let url = import.meta.env.VITE_API;
   const { foodItems, isLoading } = foodItemsStore();
   const getData = foodItemsStore((state) => state.fetchData);
 
@@ -23,7 +24,7 @@ const FoodList = () => {
   const deleteFoodItem = async (id) => {
     console.log("in delete", id);
     try {
-      const response = await axios.delete(`http://localhost:8080/foods/${id}`);
+      const response = await axios.delete(`${url}/foods/${id}`);
       console.log(response, "deleteFoodItem");
       if (response.statusText === "OK") {
         // const list_food = foodItems.filter((food) => food._id === id);
@@ -58,7 +59,7 @@ const FoodList = () => {
                 >
                   <div className="object-cover w-[100px] h-[100px]">
                     <img
-                      src={`http://localhost:8080/images/${item.image}`}
+                      src={`${url}/images/${item.image}`}
                       width="100px"
                       height="100px"
                     />

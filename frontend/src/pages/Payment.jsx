@@ -6,7 +6,8 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 const Payment = () => {
-  const Url = "http://localhost:8080/";
+  let url = import.meta.env.VITE_API;
+  //const Url = "http://localhost:8080/";
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = userStore.getState();
@@ -16,26 +17,6 @@ const Payment = () => {
   const handlePayment = async (event) => {
     event.preventDefault();
     navigate("/generateOrder");
-    // const form = event.target;
-    // const formData = new FormData(form);
-    // console.log(formData);
-    // try {
-    //   const response = await axios.post(`${Url}orders/place`, {
-    //     address: formData,
-    //     userId: user.id,
-    //     cartItems: cartData,
-    //     totalAmount: cartTotal(),
-    //     payment: true,
-    //   });
-    //   console.log(response, " payment  response");
-    //   console.log(response.data.response, " payment  response");
-    //   setCartData([]);
-    //   navigate("/generateOrder", {
-    //     state: { result: response.data.response._id },
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <div className="h-screen py-10 flex justify-center align-middle w-full">

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 const AddFood = () => {
+  let url = import.meta.env.VITE_API;
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [food, setFood] = useState({
     name: "",
@@ -21,10 +22,7 @@ const AddFood = () => {
 
     console.log(formData);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/foods/add",
-        formData
-      );
+      const response = await axios.post(`${url}/foods/add`, formData);
       console.log(response, " response");
       console.log(formData);
       if (response.statusText === "Created") {

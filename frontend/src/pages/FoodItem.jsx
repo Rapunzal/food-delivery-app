@@ -10,8 +10,9 @@ const FoodItem = ({ food, index }) => {
   const { user } = userStore.getState();
   const cartItem = useCartStore((state) => state.cartItems);
   const cartData = useCartStore((state) => state.cartData);
-  // console.log(cartItems[0], " in food item component");
-  const Url = "http://localhost:8080/";
+
+  //const Url = "http://localhost:8080/";
+  let Url = import.meta.env.VITE_API;
   const [quantity, setQuantity] = useState(0);
 
   function handleDecrement() {
@@ -26,7 +27,7 @@ const FoodItem = ({ food, index }) => {
   async function handleAddToCart(item) {
     addItemToCart(item);
     try {
-      const response = await axios.put(`${Url}carts/addToCart`, {
+      const response = await axios.put(`${Url}/carts/addToCart`, {
         user,
         item: item,
       });
@@ -44,7 +45,7 @@ const FoodItem = ({ food, index }) => {
     <div className=" w-[283px] h-80 border rounded-md relative" key={food._id}>
       <div>
         <img
-          src={`http://localhost:8080/images/${food.image}`}
+          src={`${Url}/images/${food.image}`}
           className="w-[283px] h-40 object-cover"
         />
       </div>

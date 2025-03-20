@@ -5,6 +5,7 @@ import userStore from "../stores/UserStore";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ showLogin, setShowLogin }) => {
+  let url = import.meta.env.VITE_API;
   const [login, setLogin] = useState(true);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -22,10 +23,7 @@ const Login = ({ showLogin, setShowLogin }) => {
     };
     if (login) {
       try {
-        const response = await axios.post(
-          "http://localhost:8080/users/login",
-          data
-        );
+        const response = await axios.post(`${url}/users/login`, data);
         console.log(response);
         setUser(response.data);
 
@@ -50,10 +48,7 @@ const Login = ({ showLogin, setShowLogin }) => {
     } else if (!login) {
       try {
         console.log(data, " data");
-        const response = await axios.post(
-          "http://localhost:8080/users/signUp",
-          data
-        );
+        const response = await axios.post(`${url}/users/signUp`, data);
         console.log(response);
         setUser(response.data);
         // console.log(user);

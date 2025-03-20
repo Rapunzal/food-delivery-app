@@ -7,7 +7,8 @@ import toast, { Toaster } from "react-hot-toast";
 import foodItemsStore from "../stores/FoodItemStores";
 
 const Cart = () => {
-  const Url = "http://localhost:8080/";
+  //const Url = "http://localhost:8080/";
+  const Url = import.meta.env.VITE_API;
   const { user } = userStore.getState();
 
   const {
@@ -20,7 +21,9 @@ const Cart = () => {
   useEffect(() => {
     async function getCartData() {
       try {
-        const result = await axios.post(`${Url}carts/getCart`, { id: user.id });
+        const result = await axios.post(`${Url}/carts/getCart`, {
+          id: user.id,
+        });
         console.log(result.data.cart);
         if (result.statusText === "OK") {
           setCartData(result.data.cart);
@@ -37,7 +40,7 @@ const Cart = () => {
     removeItemFromCart(item);
     toast.success("Removed");
     try {
-      const response = await axios.put(`${Url}carts/removeFromCart`, {
+      const response = await axios.put(`${Url}/carts/removeFromCart`, {
         user,
         item: item,
       });
@@ -54,7 +57,7 @@ const Cart = () => {
 
     addItemToCart(item);
     try {
-      const response = await axios.put(`${Url}carts/addToCart`, {
+      const response = await axios.put(`${Url}/carts/addToCart`, {
         user,
         item: item,
       });
@@ -71,7 +74,7 @@ const Cart = () => {
   const handleDelete = async (item) => {
     // deleteItemFromCart(item);
     try {
-      const response = await axios.put(`${Url}carts/deleteFromCart`, {
+      const response = await axios.put(`${Url}/carts/deleteFromCart`, {
         user,
         item: item,
       });
