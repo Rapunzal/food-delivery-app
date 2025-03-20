@@ -3,6 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import axios from "axios";
 import userStore from "../stores/UserStore";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 //Login Component
 const Login = ({ showLogin, setShowLogin }) => {
@@ -12,11 +13,13 @@ const Login = ({ showLogin, setShowLogin }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const { setUser, setTokens, user, setIsLoggedIn, setRole, role } =
     userStore.getState();
   const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
     let data = {
       name,
       email,
@@ -46,8 +49,10 @@ const Login = ({ showLogin, setShowLogin }) => {
             navigate("/menu");
           }
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err.response.data);
+        setError(err.response.data.error);
+        //toast.error(error);
       }
     } else if (!login) {
       //Signup logic
@@ -66,8 +71,10 @@ const Login = ({ showLogin, setShowLogin }) => {
           navigate("/menu");
           setShowLogin(false);
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err.response.data);
+        setError(err.response.data.error);
+        //  toast.error(error);
       }
     }
   }
@@ -78,6 +85,7 @@ const Login = ({ showLogin, setShowLogin }) => {
         className="place-self-center flex flex-col max-w-80 gap-6 bg-white p-7 border rounded-[4px]"
         onSubmit={handleSubmit}
       >
+        <p>{error}</p>
         <div className="flex justify-between">
           {login ? <h2>Login</h2> : <h2>Sign Up</h2>}
           <IoIosClose onClick={() => setShowLogin(false)} className="w-6 h-6" />

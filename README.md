@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MERN Food Ordering App is a full-stack web application designed to provide users with a seamless experience for ordering food . It incorporates modern technologies and best practices to offer features such as user signup, user login ,user authentication, cart management, live order tracking, and more.
+The MERN Food Ordering App is a full-stack web application designed to provide users with a seamless experience for ordering food . It incorporates modern technologies and best practices to offer features such as user signup, user login ,user authentication, cart management, and more.
 
 ## Technologies Used
 
