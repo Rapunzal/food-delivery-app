@@ -7,8 +7,9 @@ import toast, { Toaster } from "react-hot-toast";
 import foodItemsStore from "../stores/FoodItemStores";
 
 const Cart = () => {
-  //const Url = "http://localhost:8080/";
-  const Url = import.meta.env.VITE_API;
+  const Url = "http://localhost:8080";
+
+  //const Url = import.meta.env.VITE_API;
   const { user } = userStore.getState();
 
   const {

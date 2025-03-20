@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
-let url = import.meta.env.VITE_API;
+//let url = import.meta.env.VITE_API;
+let url = "http://localhost:8080";
 const foodItemsStore = create((set) => ({
   foodItems: [],
   foodItemsByCategory: [],

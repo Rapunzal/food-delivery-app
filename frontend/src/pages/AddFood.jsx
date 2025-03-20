@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 const AddFood = () => {
-  let url = import.meta.env.VITE_API;
+  //let url = import.meta.env.VITE_API;
+  let url = "http://localhost:8080";
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [food, setFood] = useState({
     name: "",

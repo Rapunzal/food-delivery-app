@@ -9,8 +9,8 @@ const Order = () => {
   const userSession = JSON.parse(localStorage.getItem("user-session"));
   const navigate = useNavigate();
 
-  // const Url = "http://localhost:8080/";
-  let url = import.meta.env.VITE_API;
+  const url = "http://localhost:8080";
+  //let url = import.meta.env.VITE_API;
   let ttl = cartTotal();
   if (Number(ttl) > 0) {
     ttl = Number(ttl) + 5;

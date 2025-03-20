@@ -6,7 +6,8 @@ import axios from "axios";
 import useCartStore from "../stores/CartStore";
 
 const Menu = () => {
-  let url = import.meta.env.VITE_API;
+  //let url = import.meta.env.VITE_API;
+  let url = "http://localhost:8080";
   const [category, setCategory] = useState("Appetizers/Starters");
   const [foodItemsByCategory, setFoodItemsByCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

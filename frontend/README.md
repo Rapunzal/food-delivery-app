@@ -1,12 +1,60 @@
-# React + Vite
+# Food Ordering App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The MERN Food Ordering App is a full-stack web application designed to provide users with a seamless experience for ordering food . It incorporates modern technologies and best practices to offer features such as user signup, user login ,user authentication, cart management, live order tracking, and more.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+- Database - MongoDB/Mongoose
+- Backend - Expressjs, Nodejs
+- Frontend - React/Zustand,Tailwind CSS ,Toastify for success messages.
+- Render for deployment,Git for version control
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Prerequisites
+
+- MongoDB
+- Node
+- npm
+
+## Link To Live Site
+
+Render Frontend Link - https://food-delivery-app-8yi1.onrender.com/menu
+Render Backend Link - https://food-delivery-app-backend-74uc.onrender.com
+
+## Key Features
+
+1. User Authentication and Registration: Users can sign up for an account, log in, and manage their profiles (User and Admin). This ensures a personalized experience and allows users to track their order history.
+2. Filtering of menu according to category of food.
+3. Displaying of all the menu items according to category .
+4. Cart Management- Adding food item to cart, incrementing ,decrementing quantity as well as removing item from cart.
+5. Used Toastify for success messages.
+6. Used Multer to upload images.
+
+## Usage instructions, if relevant.
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+![alt text](image-9.png)
+
+### Admin Panel
+
+![alt text](image-10.png)
+
+![alt text](image-11.png)

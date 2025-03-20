@@ -11,8 +11,8 @@ const FoodItem = ({ food, index }) => {
   const cartItem = useCartStore((state) => state.cartItems);
   const cartData = useCartStore((state) => state.cartData);
 
-  //const Url = "http://localhost:8080/";
-  let Url = import.meta.env.VITE_API;
+  const Url = "http://localhost:8080";
+  // let Url = import.meta.env.VITE_API;
   const [quantity, setQuantity] = useState(0);
 
   function handleDecrement() {

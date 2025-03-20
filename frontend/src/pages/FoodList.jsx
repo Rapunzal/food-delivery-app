@@ -6,7 +6,8 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 const FoodList = () => {
-  let url = import.meta.env.VITE_API;
+  //let url = import.meta.env.VITE_API;
+  let url = "http://localhost:8080";
   const { foodItems, isLoading } = foodItemsStore();
   const getData = foodItemsStore((state) => state.fetchData);
 
