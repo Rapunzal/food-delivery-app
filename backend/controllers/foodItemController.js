@@ -75,7 +75,7 @@ export const updateFoodItem = async (req, res) => {
     );
     res
       .status(200)
-      .json({ message: "User updated successfully", data: updateFoodItem });
+      .json({ message: "Food updated successfully", data: updateFoodItem });
   } catch (error) {
     console.log(error);
   }

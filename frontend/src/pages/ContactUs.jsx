@@ -6,7 +6,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 //Contact page
 const ContactUs = () => {
   return (
-    <div className="h-[500px]">
+    <div className="h-[500px] text-gray-600">
       <div>
         <h1 className="text-center py-10 text-2xl"> Contact Us</h1>
       </div>

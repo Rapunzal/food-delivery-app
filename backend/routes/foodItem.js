@@ -32,6 +32,8 @@ const upload = multer({ storage: storage });
 //Post adding food item
 router.post("/add", upload.single("image"), addFoodItem);
 
+
+
 //Updating food item
 router.put("/:id", updateFoodItem);
 
